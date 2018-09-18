@@ -1,0 +1,20 @@
+<%= form_for(@user) do |f| %>
+    <div class="form-group">
+     <%= f.label :name %>: 
+     <%= f.text_field :name %>
+    </div>
+
+    <%= f.label :username %>:
+    <%= f.text_field :username %>
+    
+    <br>
+    <%= f.label :email %>:
+    <%= f.email_field :email %>
+    
+    <br>
+    <%= f.label :password %>:
+    <%= f.password_field :password %>
+    
+    <br>
+    <%= f.submit %>
+<% end %>
