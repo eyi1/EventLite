@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
-    #before_action :find_user
+    #before_action :find_user, only: [:show]
+
+    def show
+        authenticate_user
+        find_user
+    end
+
     def new
         @user = User.new
         render :new
@@ -17,16 +23,16 @@ class UsersController < ApplicationController
 
     private
 
-    def user_params
+    def find_user
         @user = User.find_by(params[:id])
     end
 
-    def find_user
+    def user_params
         params.require(:user).permit(
             :name,
             :username,
             :email,
-            :password
+            :password_digest
         )
     end
 
