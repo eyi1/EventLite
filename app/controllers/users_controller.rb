@@ -1,9 +1,7 @@
 class UsersController < ApplicationController
-    #before_action :find_user, only: [:show]
+before_action :find_user, only: [:show]
 
     def show
-        authenticate_user
-        find_user
     end
 
     def new
@@ -24,7 +22,7 @@ class UsersController < ApplicationController
     private
 
     def find_user
-        @user = User.find_by(params[:id])
+        @user = User.find(params[:id])
     end
 
     def user_params
