@@ -1,12 +1,11 @@
 class UsersController < ApplicationController
-before_action :find_user, only: [:show]
+    before_action :find_user, only: [:show]
 
     def show
     end
 
     def new
         @user = User.new
-        render :new
     end
 
     def create
@@ -30,7 +29,7 @@ before_action :find_user, only: [:show]
             :name,
             :username,
             :email,
-            :password_digest
+            :password
         )
     end
 
