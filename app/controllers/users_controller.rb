@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :find_user, only: [:show]
+    before_action :find_user, only: [:show, :edit, :update]
 
     def show
     end
@@ -18,6 +18,19 @@ class UsersController < ApplicationController
         end
     end
 
+    def edit
+    end
+
+    def update
+        respond_to do |format|
+            if @user.update(user_params)
+                format.html { redirect_to @user, notice: 'User was successfully updated.' }
+            else
+                format.html { render :edit }
+            end
+        end
+    end
+
     private
 
     def find_user
@@ -27,7 +40,6 @@ class UsersController < ApplicationController
     def user_params
         params.require(:user).permit(
             :name,
-            :username,
             :email,
             :password
         )
