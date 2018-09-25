@@ -2,9 +2,10 @@
  <strong>LOCATION</strong>
     <p><%= @event.location %></p>
  <strong>DATE AND TIME</strong>
-    <p><%= @event.starts %></p> 
-    <br>
-    <p><%= @event.ends %></p>
+    <p><%= @event.starts.strftime("%a, %B %e, %Y") %></p>
+    <p><%= @event.starts.strftime("%I:%M %p") %> - <%= @event.ends.strftime("%I:%M %p") %></p>
  <STRONG>DESCRIPTION</STRONG>
     <p><%= @event.description %></p>
 
+<p><%= button_to 'RSVP' %></p>
+<p><%= button_to 'Edit', edit_event_path unless !current_user.events %></p>

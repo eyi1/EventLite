@@ -2,9 +2,10 @@
     <p><strong>Location:</strong>
     <p><strong>Member Since:</strong>  
     <p><strong>Upcoming events:</strong>
-
-    <p><%= link_to 'See past events' %></p>
-    <p><%= link_to 'Manage Events' %>
-
-    <p>Account Settings</p>
+    
+    <p><%= link_to 'See Past Events' %></p>
+    
+    <p><%= link_to 'Manage Events', user_events_path(@user) %></p>
     <p><%= link_to 'Edit Profile', edit_user_path(@user) %></p>
+    <br>
+    <p><%= link_to 'Sign Out', logout_path %></p>

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
     has_many :attendances
     has_many :events, :through => :attendances
+    accepts_nested_attributes_for :events
 
     validates :name, presence: true
     validates :email, uniqueness: true

@@ -5,7 +5,11 @@ class EventsController < ApplicationController
     end
     
     def index 
-        @events = Event.all
+        if params[:user_id]
+            @events = User.find(params[:user_id]).events
+        else
+            @events = Event.all
+        end
     end
 
     def new
