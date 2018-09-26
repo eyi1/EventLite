@@ -15,11 +15,11 @@ class SessionsController < ApplicationController
             
             if @user && @user.authenticate(params[:user][:password])
                 session[:user_id] = @user.id
-                    flash[:success] = "Successfully logged in!"
                 redirect_to user_path(@user)
+                flash[:success] = "Successfully logged in!" #not working                   
             else
-                    flash[:error] = "Couldn't find username and password"
                 redirect_to login_path
+                flash[:error] = "Couldn't find username and password"
             end
 
         end

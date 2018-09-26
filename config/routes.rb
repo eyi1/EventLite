@@ -9,10 +9,11 @@ Rails.application.routes.draw do
   get "/auth/facebook/callback", to: "sessions#create"
   
   resources :users do 
-    resources :events
+    resources :events, only: [:index, :new, :show, :create, :edit, :update]
   end
 
-  resources :attendances
+  resources :users
   resources :events
+  resources :attendances
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
