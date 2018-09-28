@@ -2,6 +2,7 @@ class Event < ApplicationRecord
     has_many :attendances
     has_many :users, :through => :attendances
 
+
     # def start_date
     #     self.starts = DateTime.strftime "%m/%d/%Y %H:%M"
     # end

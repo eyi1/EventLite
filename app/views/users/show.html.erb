@@ -2,6 +2,9 @@
     <p><strong>Location:</strong>
     <p><strong>Member Since:</strong>  
     <p><strong>Upcoming events:</strong>
+        <% @user.events.each do |event| %>
+            <%= event.title %>
+        <%end%>
     
     <p><%= link_to 'See Past Events' %></p>
     

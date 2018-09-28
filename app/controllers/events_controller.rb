@@ -2,7 +2,12 @@ class EventsController < ApplicationController
     before_action :set_event, only: [:show, :edit, :update, :destroy]
 
     def show 
-        @attendance = Attendance.new    
+        #@attendance = Attendance.new
+        # @event.users.each do |user|
+        #     if user == current_user
+        #      @event.users << current_user
+        #      end
+        #  end
     end
 
     def new
@@ -20,22 +25,24 @@ class EventsController < ApplicationController
     def create
        @event = Event.new(event_params)
        if @event.save
-            current_user.events << @event #if @event.users.id == current_user.id #current_user.events.build(event_params)
-            current_user.save
+            # current_user.events << @event #if @event.users.id == current_user.id #current_user.events.build(event_params)
+            # current_user.save
+            #@tweet = current_user.tweets.build(content: params[:content])
+            # @event = current_user.events.build(event_params)
+            # @event.users << current_user
+            # if @event.save
             redirect_to events_path
        else
             render :new
         end
     end
 
+    #.build - if @event.user = current_user?
     def edit    
     end
 
     def update 
-        if @event.users.each do |user|
-            user == current_user
-            @event.update(event_params)
-            end
+        if @event.update(event_params)
             redirect_to events_path
         else
             redirect_to edit_event_path
@@ -58,4 +65,3 @@ class EventsController < ApplicationController
         @event = Event.find(params[:id])
     end
 end
-

@@ -39,3 +39,35 @@
     #     end
 
     # end
+
+
+<%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+<%= tag(:input, :type => "hidden", :name => :user_id, :value => current_user.id) %>
+<%= tag(:input, :type => "hidden", :name => :event_id, :value => @event.id) %>
+
+
+         <input type="hidden" name="authenticity_token", value="<%= form_authenticity_token %>">
+         <input type="hidden" name="user_id", value=current_user.id>
+         <input type="hidden" name="event_id", value=@event.id>
+         <input type="submit" value="RSVP">
+
+
+
+    <p>
+    <% @event.users.each do |user| %>
+        <%  if user.id == current_user.id %>
+            <%= button_to 'Edit Event', [:edit, @event] %>
+         <% else %>
+            <form action="/attendances/new" method="post">
+                <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+                <%= tag(:input, :type => "hidden", :name => :user_id, :value => current_user.id) %>
+                <%= tag(:input, :type => "hidden", :name => :event_id, :value => @event.id) %>     
+                <input type="submit" value="RSVP">   
+            </form>
+        <% end %>
+    <% end %>
+    </p>
+    
+    <p>
+    <%= link_to 'Back', events_path, class: "btn btn-primary btn-light" %>
+    </p>
