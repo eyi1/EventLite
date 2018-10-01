@@ -1,43 +1,39 @@
 class EventsController < ApplicationController
     before_action :set_event, only: [:show, :edit, :update, :destroy]
 
-    def show 
-        #@attendance = Attendance.new
-        # @event.users.each do |user|
-        #     if user == current_user
-        #      @event.users << current_user
-        #      end
-        #  end
+    def show         
+        @attendance = Attendance.new
     end
 
     def new
         @event = Event.new
     end
-    
+
     def index 
         if params[:user_id]
             @events = User.find(params[:user_id]).events 
         else
             @events = Event.all
+
         end
     end
+    
 
     def create
        @event = Event.new(event_params)
-       if @event.save
-            # current_user.events << @event #if @event.users.id == current_user.id #current_user.events.build(event_params)
-            # current_user.save
+      if @event.save
+            current_user.events << @event #current_user.events.build(event_params)
+            current_user.save
             #@tweet = current_user.tweets.build(content: params[:content])
             # @event = current_user.events.build(event_params)
             # @event.users << current_user
-            # if @event.save
+           # if @event.save
             redirect_to events_path
        else
             render :new
         end
     end
 
-    #.build - if @event.user = current_user?
     def edit    
     end
 
@@ -50,6 +46,11 @@ class EventsController < ApplicationController
         end
     end
     
+    def delete
+        @event.delete
+        redirect_to events_path
+    end
+
     private
     def event_params
         params.require(:event).permit(

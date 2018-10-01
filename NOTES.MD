@@ -71,3 +71,12 @@
     <p>
     <%= link_to 'Back', events_path, class: "btn btn-primary btn-light" %>
     </p>
+
+        <% if logged_in? %>
+    <% if can? :update, @event %>
+
+
+    <%= form_for([@event, @event.users.build] do |f| %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.submit "RSVP", class: "btn btn-default" %>
+<% end %>

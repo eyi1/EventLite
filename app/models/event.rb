@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
     has_many :attendances
     has_many :users, :through => :attendances
-
+    #accepts_nested_attributes_for :users
 
     # def start_date
     #     self.starts = DateTime.strftime "%m/%d/%Y %H:%M"

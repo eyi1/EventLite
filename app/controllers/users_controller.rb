@@ -14,6 +14,7 @@ class UsersController < ApplicationController
         if @user.save
             session[:user_id] = @user.id
             redirect_to user_path(@user), notice: "Welcome to Event Builder- click create event to get started!"
+            
         else
             render :new
         end
@@ -36,7 +37,7 @@ class UsersController < ApplicationController
 
     def set_user
         @user = User.find(params[:id])
-        @user = current_user
+        #@user = current_user
     end
 
     def user_params
