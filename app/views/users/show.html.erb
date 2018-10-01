@@ -2,8 +2,8 @@
     <p><strong>Member Since:</strong> <%= @user.member_since %></p>
     
     <p><%= link_to 'View My Events', user_events_path(current_user)  %></p>
-
-    <p><%= link_to 'Browse All Events', events_path  %></p>
+   
+    <p><%= link_to 'Home', root_path %></p>
     
     <p><%= link_to 'Edit Profile', edit_user_path(@user) %></p>
 

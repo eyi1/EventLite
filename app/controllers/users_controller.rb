@@ -13,8 +13,7 @@ class UsersController < ApplicationController
         @user.admin = true
         if @user.save
             session[:user_id] = @user.id
-            redirect_to user_path(@user), notice: "Welcome to Event Builder- click create event to get started!"
-            
+            redirect_to user_path(@user), notice: "Welcome to Event Builder- click create event to get started!"         
         else
             render :new
         end

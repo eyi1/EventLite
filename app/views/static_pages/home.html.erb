@@ -1,15 +1,13 @@
 <div class="center">
-    <h1>Welcome to Event Planner!</h1>
+    <h1>EventWoks</h1>
+        <p>
+            <% if current_user %>
+                <h2><%= link_to 'Browse Events', events_path  %></h2>                
+                <%= link_to 'Go To My Account', user_path(current_user) %>   
+             <%end%>
+        </p>
+    <br>
     <%= link_to "Sign Up", new_user_path %>
     <%= link_to "Log In", login_path %>
-    <%= link_to('Log In via Facebook!', '/auth/facebook') %>
-    
-    <p>
-    <% if current_user %>
-        <%= link_to 'Sign Out', logout_path %>
-        <%= link_to 'My Account', user_path(current_user) %>
-        <p><%= link_to 'Browse All Events', events_path  %></p>       
-    <%end%>
-    </p>
-
+    <%= link_to('Log In via Facebook', '/auth/facebook') %>   
 </div>
