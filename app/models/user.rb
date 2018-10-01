@@ -9,6 +9,7 @@ class User < ApplicationRecord
     has_secure_password
 
     def member_since
+        self.created_at.strftime("%B %Y")
     end
 
      def self.find_or_create_by_omniauth(auth_hash)
@@ -16,4 +17,13 @@ class User < ApplicationRecord
             user.password = SecureRandom.hex
         end
     end 
+
+    # def self.from_today
+    #    self.where(:event)
+    #    self.where("created_at >=?", Time.zone.today.beginning_of_day)
+    # end
+
+    # def self.old_events
+    #     self.where("created_at <?", Time.zone.today.beginning_of_day)
+    # end
 end

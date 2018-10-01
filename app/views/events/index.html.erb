@@ -1,3 +1,9 @@
+<h3>Filter Events:</h3>
+  <%= form_tag("/events", method: "get") do %>
+    <%= select_tag "date", options_for_select(["Upcoming", "Past"]), include_blank: true %>
+    <%= submit_tag "Search" %>
+  <% end %>
+
 <ul>
 <% @events.each do |event| %>
     <li><%= link_to event.title, event_path(event) %></li>

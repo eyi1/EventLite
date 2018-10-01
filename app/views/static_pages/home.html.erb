@@ -8,6 +8,7 @@
     <% if current_user %>
         <%= link_to 'Sign Out', logout_path %>
         <%= link_to 'My Account', user_path(current_user) %>
+        <p><%= link_to 'Browse All Events', events_path  %></p>       
     <%end%>
     </p>
 

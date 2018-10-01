@@ -1,16 +1,10 @@
 <h1><%= @user.name %></h1>
-    <p><strong>Location:</strong>
-    <p><strong>Member Since:</strong>  
-    <p><strong>Upcoming events:</strong>
-        <% @user.events.each do |event| %>
-            <%= event.title %>
-        <%end%>
+    <p><strong>Member Since:</strong> <%= @user.member_since %></p>
     
-    <p><%= link_to 'See Past Events' %></p>
-    <%= link_to 'Manage Events', user_events_path(@user) %>
+    <p><%= link_to 'View My Events', user_events_path(current_user)  %></p>
 
-    <p><%= link_to 'Browse Events', events_path  %></p>
+    <p><%= link_to 'Browse All Events', events_path  %></p>
     
     <p><%= link_to 'Edit Profile', edit_user_path(@user) %></p>
-    <br>
+
     <p><%= link_to 'Sign Out', logout_path %></p>
