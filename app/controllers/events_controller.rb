@@ -46,8 +46,8 @@ class EventsController < ApplicationController
         end
     end
     
-    def delete
-        @event.delete
+    def destroy
+        @event.destroy
         redirect_to events_path
     end
 

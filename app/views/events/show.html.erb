@@ -13,7 +13,8 @@
 </div>
 
     <%if @event.users.first == current_user %>
-     <%= link_to 'Edit', edit_event_path(@event) %>
+     <%= link_to 'Edit Event', edit_event_path(@event) %>
+     <%= link_to 'Delete Event', event_path(@event), :method=>:delete %>
     <%else%>
      <form action="/attendances/new" method="post">
         <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
@@ -24,10 +25,6 @@
 
     <%end%>
 
-
-
-
 <p>
 <%= link_to 'Back', events_path, class: "btn btn-primary btn-light" %>
 </p>
-
