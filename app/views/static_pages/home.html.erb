@@ -4,10 +4,12 @@
             <% if current_user %>
                 <h2><%= link_to 'Browse Events', events_path  %></h2>                
                 <%= link_to 'Go To My Account', user_path(current_user) %>   
-             <%end%>
         </p>
-    <br>
-    <%= link_to "Sign Up", new_user_path %>
-    <%= link_to "Log In", login_path %>
-    <%= link_to('Log In via Facebook', '/auth/facebook') %>   
+        <%else%>
+        <p>
+            <%= link_to "Sign Up", new_user_path %>
+            <%= link_to "Log In", login_path %>
+            <%= link_to('Log In via Facebook', '/auth/facebook') %> 
+        </p>
+         <%end%>  
 </div>

@@ -10,7 +10,6 @@ class UsersController < ApplicationController
 
     def create
         @user = User.new(user_params)
-        @user.admin = true
         if @user.save
             session[:user_id] = @user.id
             redirect_to user_path(@user), notice: "Welcome to Event Builder- click create event to get started!"         
@@ -43,8 +42,7 @@ class UsersController < ApplicationController
         params.require(:user).permit(
             :name,
             :email,
-            :password,
-            :admin
+            :password
         )
     end
 

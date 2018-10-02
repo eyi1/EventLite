@@ -1,15 +1,21 @@
 <h3>Filter Events:</h3>
-  <%= form_tag("/events", method: "get") do %>
-    <%= select_tag "date", options_for_select(["Upcoming", "Past"]), include_blank: true %>
-    <%= submit_tag "Search" %>
-  <% end %>
-
-<ul>
-<% @events.each do |event| %>
-    <li><%= link_to event.title, event_path(event) %></li>
+<%= form_tag({}, method: "get") do %>
+  <%= select_tag "date", options_for_select(["Upcoming", "Past"]), include_blank: true %>
+  <%= submit_tag "Search" %>
 <% end %>
-</ul>
+
+  <ul>
+  <% @events.each do |event| %>
+      <li><%= link_to event.title, event_path(event) %></li>
+  <% end %>
+  </ul>
+
 <br>
-<p>Want to Create an Event?</p>
-<p><%= button_to 'YES', new_event_path %></p>
-<%= link_to 'My Account', user_path(current_user), class: "btn btn-primary btn-light" %>
+<p>
+  Want to Create an Event?
+  <%= button_to 'GO', new_event_path %>
+</p>
+<br>
+<p>
+  <%= link_to 'My Account', user_path(current_user), class: "btn btn-primary btn-light" %>
+</p>
