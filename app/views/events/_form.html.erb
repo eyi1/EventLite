@@ -1,3 +1,7 @@
+<% if flash[:success] %>
+  <%= flash[:success] %>
+<%end%>
+
 <div id="header">
     <h3>
         Event Details
@@ -5,19 +9,20 @@
 </div>
 
 <% if @event.errors.any? %>
-    <div id="error_explanation">
+  <div id="error_explanation">
     <strong>
         <%= pluralize(@event.errors.count, "error") %>
         <br>
         Please try again.
     </strong>
-      <ul>
+      
+    <ul>
       <% @event.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
+    </ul>
+  </div>
+<% end %>
 
   <%= form_for(@event) do |f| %>
     <%= f.label :title %>: 
@@ -43,5 +48,4 @@
     <br>
     <br>
     <%= f.submit %>
-
   <% end %>

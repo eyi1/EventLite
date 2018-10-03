@@ -12,7 +12,8 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             session[:user_id] = @user.id
-            redirect_to user_path(@user), notice: "Welcome to Event Builder- click create event to get started!"         
+            flash[:success] = "Successfully signed up! Welcome to Eventwoks!"
+            redirect_to user_path(@user)         
         else
             render :new
         end
@@ -22,14 +23,16 @@ class UsersController < ApplicationController
     end
 
     def update
-        respond_to do |format|
+        #respond_to do |format|
             if @user.update(user_params)
-                format.html { redirect_to @user, notice: 'User was successfully updated.' }
+                #format.html {}
+                redirect_to @user #, notice: 'User was successfully updated.'
+                flash[:success] = "Successfully updated your profile!"
             else
                 format.html { render :edit }
             end
-        end
     end
+
 
     private
 

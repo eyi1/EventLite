@@ -80,3 +80,27 @@
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.submit "RSVP", class: "btn btn-default" %>
 <% end %>
+
+
+
+
+        # if params[:user_id]
+        #     @events = User.find(params[:user_id]).events 
+        # else
+        #     @events = Event.all
+        # end
+
+        # if !params[:date].blank?
+        #     if params[:date] == "Upcoming"
+        #       @events = Event.from_today
+        #     else
+        #       @events = Event.old_events
+        #     end
+        # else
+        #     # if no filters are applied, show all events
+        #     if params[:user_id]
+        #         @events = User.find(params[:user_id]).events 
+        #     else
+        #         @events = Event.all
+        #     end
+        # end

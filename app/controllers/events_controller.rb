@@ -10,27 +10,6 @@ class EventsController < ApplicationController
     end
 
     def index 
-        # if params[:user_id]
-        #     @events = User.find(params[:user_id]).events 
-        # else
-        #     @events = Event.all
-        # end
-
-        # if !params[:date].blank?
-        #     if params[:date] == "Upcoming"
-        #       @events = Event.from_today
-        #     else
-        #       @events = Event.old_events
-        #     end
-        # else
-        #     # if no filters are applied, show all events
-        #     if params[:user_id]
-        #         @events = User.find(params[:user_id]).events 
-        #     else
-        #         @events = Event.all
-        #     end
-        # end
-
         if params[:user_id]
             @events = User.find(params[:user_id]).events
             search
@@ -40,16 +19,15 @@ class EventsController < ApplicationController
         end
     end
     
-
     def create
        @event = Event.new(event_params)
       if @event.save
             current_user.events << @event #current_user.events.build(event_params)
-            current_user.save
             #@tweet = current_user.tweets.build(content: params[:content])
             # @event = current_user.events.build(event_params)
             # @event.users << current_user
            # if @event.save
+           flash[:success] = "Successfully created event!"
             redirect_to events_path
        else
             render :new
@@ -61,6 +39,7 @@ class EventsController < ApplicationController
 
     def update 
         if @event.update(event_params)
+            flash[:success] = "Successfully updated event!"
             redirect_to events_path
         else
             redirect_to edit_event_path
@@ -70,6 +49,7 @@ class EventsController < ApplicationController
     
     def destroy
         @event.destroy
+        flash[:success] = "Successfully deleted event!"
         redirect_to events_path
     end
 

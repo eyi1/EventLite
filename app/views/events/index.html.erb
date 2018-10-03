@@ -1,21 +1,24 @@
+<% if flash[:success] %>
+  <%= flash[:success] %>
+<%end%>
+
 <h3>Filter Events:</h3>
-<%= form_tag({}, method: "get") do %>
-  <%= select_tag "date", options_for_select(["Upcoming", "Past"]), include_blank: true %>
-  <%= submit_tag "Search" %>
-<% end %>
+  <%= form_tag({}, method: "get") do %>
+    <%= select_tag "date", options_for_select(["Upcoming", "Past"]), include_blank: true %>
+    <%= submit_tag "Search" %>
+  <% end %>
 
   <ul>
-  <% @events.each do |event| %>
+    <% @events.each do |event| %>
       <li><%= link_to event.title, event_path(event) %></li>
-  <% end %>
-  </ul>
+     <% end %>
+  </ul><br>
 
-<br>
 <p>
   Want to Create an Event?
   <%= button_to 'GO', new_event_path %>
-</p>
-<br>
+</p><br>
+
 <p>
   <%= link_to 'My Account', user_path(current_user), class: "btn btn-primary btn-light" %>
 </p>

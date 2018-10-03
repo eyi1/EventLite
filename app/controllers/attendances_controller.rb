@@ -1,7 +1,6 @@
 class AttendancesController < ApplicationController
 
-    def new #post
-        
+    def new      
         @attendance = Attendance.create(user_id: params[:user_id], event_id: params[:event_id])
         redirect_to user_path(@attendance.user)
        # event = Event.find_by_id(params[:event_id])

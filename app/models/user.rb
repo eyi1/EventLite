@@ -7,7 +7,7 @@ class User < ApplicationRecord
     validates :password, length: { in: 6..100 }
     has_secure_password
 
-     def self.find_or_create_by_omniauth(auth_hash)
+    def self.find_or_create_by_omniauth(auth_hash)
         self.where(:email => auth_hash[:info][:email], :name =>auth_hash[:info][:name]).first_or_create do |user|
             user.password = SecureRandom.hex
         end
