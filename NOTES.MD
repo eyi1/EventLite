@@ -115,3 +115,18 @@ view/events/_form
     <br>
     <%= f.date_select :ends, {order: [:month, :day, :year]} %>
     <%= f.time_select :ends, { start_hour: 7, end_hour: 23, ampm: true, :minute_step => 15, :time_separator => "" } %>
+
+
+    in event create controller:
+            #@tweet = current_user.tweets.build(content: params[:content])
+            # @event = current_user.events.build(event_params)
+            # @event.users << current_user
+           # if @event.save
+
+    in attendance controller:
+        # event = Event.find_by_id(params[:event_id])
+       # @attendance = event.attendances.create(user_id: params[:user_id], event_id: params[:event_id])
+
+        # user = User.find_by_id(params[:user_id])
+        # @attendance = event.attendances.create(:user_id => user.id)
+        #redirect_to user_path(@attendance.user)

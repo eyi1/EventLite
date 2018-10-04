@@ -24,31 +24,31 @@
   </div>
 <% end %>
 
-  <%= form_for(@event) do |f| %>
-    <%= f.label :title %>: 
-    <br>
-    <%= f.text_field :title %>
-    <br>
-    <br>
-    <%= f.label :location %>: 
-    <br>
-    <%= f.text_field :location %>
-    <br>
-    <br>
-    <%= f.label :description %>: 
-    <br>
-    <%= f.text_area :description %>
-    <br>
-    <br>
-    <%= f.label :starts %>
-    <br>
-    <%= f.datetime_select :starts, { ampm: true, :minute_step => 15, order: [:month, :day, :year] }%>
-    <br>
-    <br>
-    <%= f.label :ends %>
-    <br>
-    <%= f.datetime_select :ends, { ampm: true, :minute_step => 15, order: [:month, :day, :year] } %>
-    <br>
-    <br>
-    <%= f.submit %>
-  <% end %>
+<%= form_for(@event) do |f| %>
+  <%= f.label :title %>: 
+  <br>
+  <%= f.text_field :title %>
+  <br>
+  <br>
+  <%= f.label :location %>: 
+  <br>
+  <%= f.text_field :location %>
+  <br>
+  <br>
+  <%= f.label :description %>: 
+  <br>
+  <%= f.text_area :description %>
+  <br>
+  <br>
+  <%= f.label :starts %>
+  <br>
+  <%= f.datetime_select :starts, { ampm: true, :minute_step => 15, order: [:month, :day, :year] }%>
+  <br>
+  <br>
+  <%= f.label :ends %>
+  <br>
+  <%= f.datetime_select :ends, { ampm: true, :minute_step => 15, order: [:month, :day, :year] } %>
+  <br>
+  <br>
+  <%= f.submit %>
+<% end %>

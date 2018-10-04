@@ -23,11 +23,7 @@ class EventsController < ApplicationController
        @event = Event.new(event_params)
       if @event.save
             current_user.events << @event #current_user.events.build(event_params)
-            #@tweet = current_user.tweets.build(content: params[:content])
-            # @event = current_user.events.build(event_params)
-            # @event.users << current_user
-           # if @event.save
-           flash[:success] = "Successfully created event!"
+            flash[:success] = "Successfully created event!"
             redirect_to events_path
        else
             render :new
@@ -39,12 +35,10 @@ class EventsController < ApplicationController
 
     def update 
         if @event.update(event_params)
-            #raise params.inspect
             flash[:success] = "Successfully updated event!"
             redirect_to events_path
         else
             redirect_to edit_event_path
-            #write error message : you do not have access to edit
         end
     end
     
@@ -72,13 +66,10 @@ class EventsController < ApplicationController
     def search
         if !params[:date].blank?
             if params[:date] == "Upcoming"
-              #@events = Event.from_today
               @events.from_today
             else
-              #@events = Event.old_events
               @events.old_events
             end
         end
     end
-
 end

@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
             
             if @user && @user.authenticate(params[:user][:password])
                 session[:user_id] = @user.id
-                flash[:success] = "Welcome Back!" #not working  
+                flash[:success] = "Welcome Back!" 
                 redirect_to user_path(@user)                 
             else
                 flash[:error] = "Couldn't find username and password"
