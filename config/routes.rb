@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post "/attendances/new", to: "attendances#new"
  
   resources :users do 
-    resources :events, only: [:index, :new, :destroy]
+    resources :events, only: [:index, :new]
   end
 
   resources :users

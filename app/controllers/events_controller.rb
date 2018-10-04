@@ -39,6 +39,7 @@ class EventsController < ApplicationController
 
     def update 
         if @event.update(event_params)
+            #raise params.inspect
             flash[:success] = "Successfully updated event!"
             redirect_to events_path
         else

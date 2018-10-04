@@ -1,29 +1,31 @@
-<div class="center">
-
-    <h3><%= @event.title %></h3>
-    
-    <strong>LOCATION</strong>
-        <p><%= @event.location %></p>
-    <strong>DATE AND TIME</strong>
-        <p><%= @event.starts.strftime("%a, %B %e, %Y") %></p>
-        <p><%= @event.starts.strftime("%I:%M %p") %> - <%= @event.ends.strftime("%I:%M %p") %></p>
-    <strong>DESCRIPTION</strong>
-        <p><%= @event.description %></p>
-
+<div class="header">
+    <h3>
+        Event Details
+    </h3>
 </div>
-
-<%if @event.users.first == current_user %>  
-    <%= link_to 'Edit Event', edit_event_path(@event) %>
-    <%= link_to 'Delete Event', event_path(@event), :method=>:delete %>  
-<%else%>
-    <form action="/attendances/new" method="post">
-        <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
-        <%= tag(:input, :type => "hidden", :name => :user_id, :value => current_user.id) %>
-        <%= tag(:input, :type => "hidden", :name => :event_id, :value => @event.id) %>     
-        <input type="submit" value="RSVP">   
-    </form>     
-<%end%> 
-
-<p>
-    <%= link_to 'Back', events_path, class: "btn btn-primary btn-light" %>
-</p>
+    
+<div class="info1">
+    <div class="body">
+        <br>
+        <h1><%= @event.title %></h1>
+        <strong>LOCATION</strong>
+        <p><%= @event.location %></p>
+        <strong>DATE AND TIME</strong>
+        <p><%= @event.starts.strftime("%a, %B %e, %Y") %> - <%= @event.starts.strftime("%I:%M %p") %></p>
+        <p><%= @event.ends.strftime("%a, %B %e, %Y") %> - <%= @event.ends.strftime("%I:%M %p") %></p>
+        <strong>DESCRIPTION</strong>
+        <p><%= @event.description %></p>
+        <br>
+        <%if @event.users.last == current_user %>  
+            <%= link_to 'Edit Event', edit_event_path(@event) %>
+            <%= link_to 'Delete Event', event_path(@event), :method=>:delete %>  
+        <%else%>
+            <form action="/attendances/new" method="post">
+                <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+                <%= tag(:input, :type => "hidden", :name => :user_id, :value => current_user.id) %>
+                <%= tag(:input, :type => "hidden", :name => :event_id, :value => @event.id) %>     
+                <input type="submit" value="RSVP"> 
+            </form>     
+        <%end%> 
+    </div> 
+</div>  

@@ -1,4 +1,7 @@
 class Event < ApplicationRecord
+    # extend TimeSplitter::Accessors
+    # split_accessor :starts
+
     has_many :attendances
     has_many :users, :through => :attendances
 
@@ -9,10 +12,10 @@ class Event < ApplicationRecord
     validates :description, presence: true
 
     def self.from_today
-        self.where("created_at >=?", Time.zone.today.beginning_of_day)
+        self.where("starts >=?", Time.zone.today.beginning_of_day)
     end
  
     def self.old_events
-         self.where("created_at <?", Time.zone.today.beginning_of_day)
+         self.where("ends <?", Time.zone.today.beginning_of_day)
     end
 end

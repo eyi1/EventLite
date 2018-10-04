@@ -4,9 +4,14 @@
     <%= flash[:error]%>
 <%end%>
 
-<h1><%= @user.name %></h1>
-    <p><strong>Member Since:</strong> <%= @user.member_since %></p>
-    
+<div class="info1">
+    <h1><%= @user.name %></h1>
+    <p><strong>Member Since:</strong></p>
+    <p><%= @user.member_since %></p>
+</div>
+
+<div class="info2">
+
     <p><%= link_to 'View My Events', user_events_path(current_user)  %></p>
    
     <p><%= link_to 'Home', root_path %></p>
@@ -14,3 +19,4 @@
     <p><%= link_to 'Edit Profile', edit_user_path(@user) %></p>
 
     <p><%= link_to 'Sign Out', logout_path %></p>
+</div> 

@@ -104,3 +104,14 @@
         #         @events = Event.all
         #     end
         # end
+
+
+view/events/_form
+<%= f.date_select :starts, {order: [:month, :day, :year]} %>
+    <%= f.time_select :starts, { start_hour: 7, end_hour: 23, ampm: true, :minute_step => 15, :time_separator => "" } %>
+    <br>
+    <br>
+    <%= f.label :ends %>
+    <br>
+    <%= f.date_select :ends, {order: [:month, :day, :year]} %>
+    <%= f.time_select :ends, { start_hour: 7, end_hour: 23, ampm: true, :minute_step => 15, :time_separator => "" } %>

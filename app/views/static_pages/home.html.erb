@@ -3,11 +3,14 @@
 <%end%>
 
 <div class="center">
-    <h1>EventWoks</h1>
+    <div class="info1">
+        <h3>EventWoks</h3>
+    </div>    
+
+    <div class="info2">
         <p>
             <% if current_user %>
-                <h2><%= link_to 'Browse Events', events_path  %></h2>                
-                <%= link_to 'Go To My Account', user_path(current_user) %>   
+                <h2><%= link_to 'Browse Events', events_path  %></h2>                   
         </p>
             <%else%>
         <p>
@@ -16,4 +19,10 @@
             <%= link_to('Log In via Facebook', '/auth/facebook') %> 
         </p>
             <%end%>  
+    </div>
+</div>
+
+
+<div class="path1">
+    <%= link_to 'Go To My Account', user_path(current_user) %>
 </div>
