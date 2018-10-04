@@ -1,3 +1,7 @@
+<% if flash[:success] %>
+    <%= flash[:success] %>
+  <%end%>  
+
 <div class="header">
     <h3>
         Event Details
@@ -15,8 +19,14 @@
         <p><%= @event.ends.strftime("%a, %B %e, %Y") %> - <%= @event.ends.strftime("%I:%M %p") %></p>
         <strong>DESCRIPTION</strong>
         <p><%= @event.description %></p>
-        <br>
-        <%if @event.users.last == current_user %>  
+        <strong>ATTENDEES</strong>
+       <ol>
+        <% @event.users.each do|user| %>
+            <li><%= user.name %></li>
+        <%end%>
+        </ol>
+       
+        <%if @event.users.first == current_user %>  
             <%= link_to 'Edit Event', edit_event_path(@event) %>
             <%= link_to 'Delete Event', event_path(@event), :method=>:delete %>  
         <%else%>
@@ -25,7 +35,19 @@
                 <%= tag(:input, :type => "hidden", :name => :user_id, :value => current_user.id) %>
                 <%= tag(:input, :type => "hidden", :name => :event_id, :value => @event.id) %>     
                 <input type="submit" value="RSVP"> 
-            </form>     
+            </form> 
         <%end%> 
+        
+        <p>
+        <% @event.attendances.each do |attendance| %>
+            <%if attendance.user_id == current_user.id%>
+              <strong>Already Attending!</strong>
+               <%end%> 
+            <%end%> 
+        </p>
     </div> 
 </div>  
+
+<div class='path2'>
+    <%=link_to 'Back to Events', events_path%>
+</div>

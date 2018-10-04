@@ -12,7 +12,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             session[:user_id] = @user.id
-            flash[:success] = "Successfully signed up! Welcome to Eventwoks!"
+            flash[:success] = "Successfully signed up! Welcome to EventLite!"
             redirect_to user_path(@user)         
         else
             render :new

@@ -30,13 +30,13 @@ class EventsController < ApplicationController
         end
     end
 
-    def edit    
+    def edit   
     end
 
     def update 
         if @event.update(event_params)
             flash[:success] = "Successfully updated event!"
-            redirect_to events_path
+            redirect_to event_path(@event)
         else
             redirect_to edit_event_path
         end
@@ -66,9 +66,9 @@ class EventsController < ApplicationController
     def search
         if !params[:date].blank?
             if params[:date] == "Upcoming"
-              @events.from_today
+              @events = @events.from_today
             else
-              @events.old_events
+              @events = @events.old_events
             end
         end
     end

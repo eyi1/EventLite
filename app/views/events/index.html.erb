@@ -8,13 +8,13 @@
     <%= form_tag({}, method: "get") do %>
     <%= select_tag "date", options_for_select(["Upcoming", "Past"]), include_blank: true %>
     <%= submit_tag "Search" %>
-  <% end %>
+    <% end %>
 
-  <ul>
-    <% @events.each do |event| %>
-      <li><%= link_to event.title, event_path(event) %></li>
-     <% end %>
-  </ul>
+    <ul>
+      <% @events.each do |event| %>
+        <li><%= link_to event.title, event_path(event) %></li>
+      <% end %>
+    </ul>
   </div>
 
   <div class="info2">

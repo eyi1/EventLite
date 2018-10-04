@@ -16,6 +16,10 @@ class Event < ApplicationRecord
     end
  
     def self.old_events
-         self.where("ends <?", Time.zone.today.beginning_of_day)
+         self.where("starts <?", Time.zone.today.beginning_of_day)
+    end
+
+    def rsvp(event)
+        binding.pry
     end
 end
