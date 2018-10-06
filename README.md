@@ -1,7 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+EventLite is a simple event sign-up/register app
+
+The app allows user to sign up/login and create his/her own event page(s) 
+The app allows user to browse/RSVP any event he/she wishes to attend
+
+To use this app, just clone, run rake db:migrate and then run "thin start --ssl"
 
 Things you may want to cover:
 
@@ -21,6 +25,4 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
-# build_event
 # build_event
