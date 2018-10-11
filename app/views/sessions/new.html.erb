@@ -1,3 +1,7 @@
+<% if flash[:error] %>
+  <%= flash[:error] %>
+<%end%>
+
 <div class="info1">
   <%= form_for @user, :url => url_for(:controller => 'sessions', :action => 'create') do |f| %>
     <%= f.label :email %>
