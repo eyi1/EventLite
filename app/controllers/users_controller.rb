@@ -29,7 +29,7 @@ class UsersController < ApplicationController
                 redirect_to @user #, notice: 'User was successfully updated.'
                 flash[:success] = "Successfully updated your profile!"
             else
-                format.html { render :edit }
+                render :edit
             end
     end
 
