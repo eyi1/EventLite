@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
 
     def current_user
         @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+        #if @current_user is nil find User by its session id if its session id exists
     end
 
     helper_method :current_user
