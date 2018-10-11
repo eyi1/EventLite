@@ -23,8 +23,8 @@
        <ol>
            <% @event.users.each do |user| %>
             <li> 
-                    <%= user.name %> 
-                    <%= user.attendances.last.comment %>
+                <%= user.name %> 
+                <%= user.attendances.last.comment %>
             </li>
             <%end%>
         </ol>    
