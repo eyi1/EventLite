@@ -13,16 +13,22 @@ class EventsController < ApplicationController
         if params[:user_id]
             @events = User.find(params[:user_id]).events
             search
+            @my_url = new_user_event_path(current_user)
         else
             @events = Event.all
             search
+            @my_url = new_event_path
         end
+
+        current_user.events.build
+        Event.new
     end
     
     def create
-       @event = Event.new(event_params)
+       #@event = Event.new(event_params)
+       @event = current_user.events.build(event_params)
       if @event.save
-            current_user.events << @event #current_user.events.build(event_params)
+            #current_user.events << @event #current_user.events.build(event_params)
             flash[:success] = "Successfully created event!"
             redirect_to events_path
        else
