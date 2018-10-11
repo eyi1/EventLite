@@ -23,6 +23,9 @@
        <ol>
         <% @event.users.each do|user| %>
             <li><%= user.name %></li>
+        <%end%> - 
+        <% @event.attendances do |attendance| %>
+            <%= attendance.comment %>
         <%end%>
         </ol>
        
@@ -33,7 +36,8 @@
             <form action="/attendances/new" method="post">
                 <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
                 <%= tag(:input, :type => "hidden", :name => :user_id, :value => current_user.id) %>
-                <%= tag(:input, :type => "hidden", :name => :event_id, :value => @event.id) %>     
+                <%= tag(:input, :type => "hidden", :name => :event_id, :value => @event.id) %> 
+                <%= tag(:input, :type => "field", :name => :comment, :value => @attendance.comment) %>     
                 <input type="submit" value="RSVP"> 
             </form> 
         <%end%> 
