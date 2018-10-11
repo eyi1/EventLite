@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     def create
         if auth_hash = request.env["omniauth.auth"] 
             @user = User.find_or_create_by_omniauth(auth_hash)
-                 #@user.save! #Attempts to save the record just like Base#save but will raise a RecordInvalid exception instead of returning false if the record is not valid.
+                 #@user.save! #".save!" Attempts to save the record just like ".save" but will raise a RecordInvalid exception instead of returning false if the record is not valid.
                  session[:user_id] = @user.id
                  flash[:success] = "Welcome Back!"
                  redirect_to user_path(@user)
@@ -23,7 +23,6 @@ class SessionsController < ApplicationController
                 flash[:error] = "Couldn't find username and password"
                 redirect_to login_path
             end
-
         end
     end
 
