@@ -21,17 +21,13 @@
         <p><%= @event.description %></p>
         <strong>ATTENDEES</strong>
        <ol>
-            <% @event.users.each do |user| %>
-                <li>
+           <% @event.users.each do |user| %>
+            <li> 
                     <%= user.name %> 
-                </li>
+                    <%= user.attendances.last.comment %>
+            </li>
             <%end%>
-
-            <% current_user.attendances.each do |x| %>
-                 <%= x.comment %>
-            <%end%> 
-        </ol>
-    
+        </ol>    
 
         <% @event.attendances do |attendance| %>
                 <%= attendance.comment %>
