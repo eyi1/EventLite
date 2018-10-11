@@ -21,16 +21,21 @@
         <p><%= @event.description %></p>
         <strong>ATTENDEES</strong>
        <ol>
-        <% @event.users.each do |user| %>
-            <li>
-                <%= user.name %> 
-            </li>
-        <%end%>
+            <% @event.users.each do |user| %>
+                <li>
+                    <%= user.name %> 
+                </li>
+            <%end%>
+
+            <% current_user.attendances.each do |x| %>
+                 <%= x.comment %>
+            <%end%> 
         </ol>
+    
 
         <% @event.attendances do |attendance| %>
-            <%= attendance.comment %>
-        <%end%>
+                <%= attendance.comment %>
+            <%end%>
 
         <%if @event.users.first == current_user %>  
             <%= link_to 'Edit Event', edit_event_path(@event) %>
@@ -40,7 +45,7 @@
                 <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
                 <%= tag(:input, :type => "hidden", :name => :user_id, :value => current_user.id) %>
                 <%= tag(:input, :type => "hidden", :name => :event_id, :value => @event.id) %> 
-                <%= tag(:input, :type => "text", :placeholder => "leave a comment", :name => :comment, :value => @attendance.comment) %>     
+                <%= tag(:input, :type => "text", :placeholder => "add a comment", :name => :comment, :value => @attendance.comment) %>     
                 <input type="submit" value="RSVP"> 
             </form> 
         <%end%> 
@@ -48,7 +53,7 @@
         <p>
         <% @event.attendances.each do |attendance| %>
             <%if attendance.user_id == current_user.id%>
-              <strong>Already Attending!</strong>
+              <strong>You are Attending!</strong>
                <%end%> 
             <%end%> 
         </p>

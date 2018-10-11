@@ -1,17 +1,17 @@
 <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <strong>
-        <%= pluralize(@user.errors.count, "error") %>
-        <br>
-        Please try again.
-      </strong>
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div id="error_explanation">
+    <strong>
+      <%= pluralize(@user.errors.count, "error") %>
+      <br>
+      Please try again.
+    </strong>
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <div class="info1">
   <%= form_for(@user) do |f| %>
