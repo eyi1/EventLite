@@ -12,7 +12,7 @@
     <div class="body">
         <br>
         <h1><%= @event.title %></h1>
-        <strong>LOCATION</strong>
+        <strong><%= link_to 'LOCATION', map_path %></strong>
         <p><%= @event.location %></p>
         <strong>DATE AND TIME</strong>
         <p><%= @event.starts.strftime("%a, %B %e, %Y") %> - <%= @event.starts.strftime("%I:%M %p") %></p>

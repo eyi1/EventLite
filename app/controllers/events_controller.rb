@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-    before_action :set_event, only: [:show, :edit, :update, :destroy]
+    before_action :set_event, only: [:show, :edit, :update, :destroy, :location]
 
     def show         
         @attendance = Attendance.new
@@ -19,9 +19,6 @@ class EventsController < ApplicationController
             search
             @my_url = new_event_path
         end
-
-        current_user.events.build
-        Event.new
     end
     
     def create
@@ -54,6 +51,10 @@ class EventsController < ApplicationController
         @event.destroy
         flash[:success] = "Successfully deleted event!"
         redirect_to events_path
+    end
+
+    def location 
+        render 'events/location'
     end
 
     private
