@@ -19,9 +19,6 @@ class EventsController < ApplicationController
             search
             @my_url = new_event_path
         end
-
-        current_user.events.build
-        Event.new
     end
     
     def create
