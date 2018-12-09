@@ -10,29 +10,17 @@ class EventsController < ApplicationController
     end
 
     def index 
-        # if params[:user_id]
-        #     @events = User.find(params[:user_id]).events 
-        # else
-        #     @events = Event.all
-        # end
-
-        if !params[:date].blank?
-            if params[:date] == "Upcoming"
-              @events = Event.from_today
-            else
-              @events = Event.old_events
-            end
+        if params[:user_id]
+            @events = User.find(params[:user_id]).events
+            search
+            @my_url = new_user_event_path(current_user)
         else
-            # if no filters are applied, show all events
-            if params[:user_id]
-                @events = User.find(params[:user_id]).events 
-            else
-                @events = Event.all
-            end
+            @events = Event.all
+            search
+            @my_url = new_event_path
         end
     end
     
-
     def create
        @event = Event.new(event_params)
       if @event.save
@@ -78,5 +66,15 @@ class EventsController < ApplicationController
 
     def set_event
         @event = Event.find(params[:id])
+    end
+
+    def search
+        if !params[:date].blank?
+            if params[:date] == "Upcoming"
+              @events = @events.from_today
+            else
+              @events = @events.old_events
+            end
+        end
     end
 end
