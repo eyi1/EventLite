@@ -1,5 +1,6 @@
 <h3>Filter Events:</h3>
-  <%= form_tag("/events", method: "get") do %>
+ 
+<%= form_tag({}, method: "get") do %>
     <%= select_tag "date", options_for_select(["Upcoming", "Past"]), include_blank: true %>
     <%= submit_tag "Search" %>
   <% end %>
@@ -11,5 +12,5 @@
 </ul>
 <br>
 <p>Want to Create an Event?</p>
-<p><%= button_to 'YES', new_event_path %></p>
+<p><%= button_to 'GO', @my_url, method: :get%>
 <%= link_to 'My Account', user_path(current_user), class: "btn btn-primary btn-light" %>
