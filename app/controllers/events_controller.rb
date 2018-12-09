@@ -21,7 +21,7 @@ class EventsController < ApplicationController
         end
     end
     
-    def create
+     def create
         #@event = current_user.events.build(event_params)
         #if @event.save <--@event.users []
 
