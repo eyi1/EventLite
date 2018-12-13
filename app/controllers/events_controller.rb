@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-    before_action :set_event, only: [:show, :edit, :update, :destroy]
+    before_action :set_event, only: [:show, :edit, :update, :destroy, :event_data]
 
     def show         
         @attendance = Attendance.new
@@ -18,18 +18,20 @@ class EventsController < ApplicationController
             @events = Event.all
             search
             @my_url = new_event_path
+
+            #render 'events/index', :layout =>false
         end
     end
     
     def create
         #@event = current_user.events.build(event_params)
         #if @event.save <--@event.users []
-
         @event = Event.new(event_params)
         if @event.save
             current_user.events << @event #current_user.events.build(event_params)
             flash[:success] = "Successfully created event!"
-            redirect_to events_path
+            #redirect_to events_path
+            render json: @event, status: 201
         else
             render :new
         end
@@ -51,6 +53,15 @@ class EventsController < ApplicationController
         @event.destroy
         flash[:success] = "Successfully deleted event!"
         redirect_to events_path
+    end
+
+    def event_data
+        render json: @event
+    end
+
+    def events_data
+        @events = Event.all
+        render json: @events
     end
 
     private
