@@ -1,1 +1,62 @@
-<%= render 'form' %>
+<% if flash[:success] %>
+    <%= flash[:success] %>
+  <%end%>
+  
+  <div id="header">
+      <h3>
+          Event Details
+      </h3>
+  </div>
+  
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <strong>
+          <%= pluralize(@event.errors.count, "error") %>
+          <br>
+          Please try again.
+      </strong>
+        
+      <ul>
+        <% @event.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= form_for(@event) do |f| %>
+    <%= f.label :title %>: 
+    <br>
+    <%= f.text_field :title %>
+    <br>
+    <br>
+    <%= f.label :location %>: 
+    <br>
+    <%= f.text_field :location %>
+    <br>
+    <br>
+    <%= f.label :description %>: 
+    <br>
+    <%= f.text_area :description %>
+    <br>
+    <br>
+    <%= f.label :starts %>
+    <br>
+    <%= f.datetime_select :starts, { ampm: true, :minute_step => 15, order: [:month, :day, :year] }%>
+    <br>
+    <br>
+    <%= f.label :ends %>
+    <br>
+    <%= f.datetime_select :ends, { ampm: true, :minute_step => 15, order: [:month, :day, :year] } %>
+    <br>
+    <%= f.hidden_field :current_user, :value => current_user.id, :data => {id: current_user.id}%>
+    <br>
+    <%= f.submit %>
+  <% end %>
+
+<div id="eventDetails">
+  <h2 id="eventTitle"></h2>
+  <p id="eventLocation"></p>
+  <p id="eventDateTime"></p>
+  <p id="eventDescription"></p>
+</div>
