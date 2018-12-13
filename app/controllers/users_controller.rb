@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :set_user, only: [:show, :edit, :update, :destroy]
+    before_action :set_user, only: [:show, :edit, :update, :destroy, :user_data]
 
     def show
     end
@@ -31,6 +31,15 @@ class UsersController < ApplicationController
             else
                 render :edit
             end
+    end
+
+    def user_data
+        render json: @user
+    end
+
+    def users_data
+        @users = User.all
+        render json: @users
     end
 
     private
