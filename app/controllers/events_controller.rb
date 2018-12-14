@@ -14,11 +14,15 @@ class EventsController < ApplicationController
             @events = User.find(params[:user_id]).events
             search
             @my_url = new_user_event_path(current_user)
+            render json: @events
+            # respond_to do |f|
+            #     f.html
+            #     f.json {@events}
         else
             @events = Event.all
             search
             @my_url = new_event_path
-
+            render json: @events
             #render 'events/index', :layout =>false
         end
     end
