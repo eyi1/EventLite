@@ -16,18 +16,6 @@
       <% end %>
     </ul>
 
+  <% button_to 'GO', @my_url, method: :get%>
 
-  </div>
-
-  <ul id="events-section">
-  </ul>
-
-  <div class="info2">
-      <h3>Want to Create an Event?</h3>
-      <%= button_to 'GO', @my_url, method: :get%>
-  </div>
-
-  <div class="path2"%>
-    <%= link_to 'Back to My Account', user_path(current_user) %>
-  </div>
 </div>
