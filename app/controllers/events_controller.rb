@@ -18,20 +18,22 @@ class EventsController < ApplicationController
             @events = User.find(params[:user_id]).events
             search
             @my_url = new_user_event_path(current_user)
-            # respond_to do |format|
-            #     format.html
-            #     format.json {render json: @events}
-            # end
-            #render json: @events
+            
+            respond_to do |format|
+                format.html
+                format.json {render json: @events}
+            end
+           
         else
             @events = Event.all
             search
             @my_url = new_event_path
-            # respond_to do |format|
-            #     format.html
-            #     format.json {render json: @events}
-            # end
-            #render json: @events
+            
+            respond_to do |format|
+                format.html
+                format.json {render json: @events}
+            end
+
         end
     end
     
