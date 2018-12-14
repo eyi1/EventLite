@@ -37,7 +37,7 @@ const bindClickHandlers = () => {
     $('.btn-btn-events').click((e) => {
         e.preventDefault()
         history.pushState(null, null, "events")
-        fetch(`/events/events_data.json`)
+        fetch('/events.json')
             .then((res) => res.json())
             .then(events => {
                 $("#app-container").text('')
@@ -65,6 +65,10 @@ $(document).on('click', ".show_link", function(e){
             $('#app-container').append(eventHTML)
         })
 })
+
+// $(document).on('click', 'next-post', function(){
+//     let id = $(this).
+// })
 
 function Event(event){
     this.id = event.id
