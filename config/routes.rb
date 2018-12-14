@@ -12,8 +12,9 @@ Rails.application.routes.draw do
   get "events/:id/event_data", to: "events#event_data"
   get "users/:id/user_data", to: "users#user_data"
   
-  get "events/events_data", to: "events#events_data"
-  get "users/users_data", to: "users#users_data"
+  get "events/:id/next", to: "events#next"
+  # get "events/events_data", to: "events#events_data"
+  # get "users/users_data", to: "users#users_data"
 
   resources :users do 
     resources :events, only: [:index, :new]
