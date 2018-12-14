@@ -3,6 +3,10 @@ class EventsController < ApplicationController
 
     def show         
         @attendance = Attendance.new
+        respond_to do |format|
+            format.html
+            format.json {render json: @event}
+        end
     end
 
     def new
@@ -14,16 +18,20 @@ class EventsController < ApplicationController
             @events = User.find(params[:user_id]).events
             search
             @my_url = new_user_event_path(current_user)
-            render json: @events
-            # respond_to do |f|
-            #     f.html
-            #     f.json {@events}
+            # respond_to do |format|
+            #     format.html
+            #     format.json {render json: @events}
+            # end
+            #render json: @events
         else
             @events = Event.all
             search
             @my_url = new_event_path
-            render json: @events
-            #render 'events/index', :layout =>false
+            # respond_to do |format|
+            #     format.html
+            #     format.json {render json: @events}
+            # end
+            #render json: @events
         end
     end
     
@@ -59,9 +67,9 @@ class EventsController < ApplicationController
         redirect_to events_path
     end
 
-    def event_data
-        render json: @event
-    end
+    # def event_data
+    #     render json: @event
+    # end
 
     def events_data
         @events = Event.all
