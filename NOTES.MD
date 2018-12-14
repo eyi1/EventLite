@@ -1,3 +1,14 @@
+<% if current_user %>
+ <% link_to 'Browse Events', events_path  %></h2>  
+ <% link_to 'Go To My Account', user_path(current_user) %>
+<% else %>
+ <% link_to "Sign Up", new_user_path %>
+ <% link_to "Log In", login_path %>
+ <%= link_to('Log In via Facebook', '/auth/facebook') %> 
+<% end %>  
+        
+        
+        
         # if auth
         #     @user = User.find_or_create_by(uid: auth['uid']) do |u|
                
