@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-    before_action :set_event, only: [:show, :edit, :update, :destroy, :event_data]
+    before_action :set_event, only: [:show, :edit, :update, :destroy, :next]
 
     def show         
         @attendance = Attendance.new
@@ -51,6 +51,11 @@ class EventsController < ApplicationController
         end
     end
 
+    def next
+        @next_event = @event.to_next_event  
+        render json: @next_event  
+    end
+
     def edit   
     end
 
@@ -73,10 +78,10 @@ class EventsController < ApplicationController
     #     render json: @event
     # end
 
-    def events_data
-        @events = Event.all
-        render json: @events
-    end
+    # def events_data
+    #     @events = Event.all
+    #     render json: @events
+    # end
 
     private
     def event_params
