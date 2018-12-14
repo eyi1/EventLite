@@ -1,42 +1,15 @@
-// $(function(){
-//     $("a[href='/events']").on('click', function(){
-//         // eventId = data.id
-//         fetch('http://localhost:3000/events/events_data')
-//         .then(parseJSON)
-//         .then(listEvents)
-//      })
-//  })
-
-//  function parseJSON(response){
-//     response.json()
-//  }
-// //$(function(){
-//     $(".events.index").ready(function(){
-//         const url = 'http://localhost:3000/events/events_data'
-//         $.get(url)
-//             .done(listEvents)
-//         })
-// //})
- 
-//  function listEvents(eventsArray){
-//      //console.log(eventsArray)
-//     eventsArray.forEach(function(event){
-//         localStorage.setItem("eventName", event.title)
-//         //console.log(localStorage.event)
-//         $('#events-section').append(`<li>${localStorage.eventName}</li>`)
-//         //document.getElementById("events-section").innerHTML = sessionStorage.eventName
-
-//     })
-//  }
-
 $(() => {
     bindClickHandlers()
+
+    getEvent()
+    
+    getNextEvent()
 })
 
 const bindClickHandlers = () => {
     $('.btn-btn-events').click((e) => {
         e.preventDefault()
-        history.pushState(null, null, "events")
+        history.pushState({}, '', 'events')
         fetch('/events.json')
             .then((res) => res.json())
             .then(events => {
@@ -50,25 +23,40 @@ const bindClickHandlers = () => {
     })
 }
 
-$(document).on('click', ".show_link", function(e){
-    e.preventDefault()
-    //this.href.json does not work   
-    //$(this).attr('data-id') 
-    id = $(this).data("id")
-    history.pushState(null, null, `events/${id}`)
-    fetch(`/events/${id}.json`)
-        .then(res => res.json())
-        .then(event => {
-            $("#app-container").text('')
-            let newEvent = new Event(event)
-            let eventHTML = newEvent.formatShow()
-            $('#app-container').append(eventHTML)
-        })
-})
+const getEvent = () => {
+        $(document).on('click', ".show_link", function(e){
+        e.preventDefault()
+        //this.href.json does not work   
+        //$(this).attr('data-id') or
+        //$(this).data("id" 
+        let id = $(this).attr('data-id')
+        history.pushState({}, '', `events/${1}`)
+        fetch(`/events/${id}.json`)
+            .then(res => res.json())
+            .then(event => {
+                $("#app-container").text('')
+                let newEvent = new Event(event)
+                let eventHTML = newEvent.formatShow()
+                $('#app-container').append(eventHTML)
+            })
+    })
+}
 
-// $(document).on('click', 'next-post', function(){
-//     let id = $(this).
-// })
+const getNextEvent = () => {
+    $(document).on('click', ".next-event", function(){
+        let nextId = parseInt($(this).attr("data-id"))+ 1;
+        let id = $(this).attr('data-id')
+        history.pushState({}, '', `${nextId}`)
+        fetch(`/events/${id}/next`)
+            .then(res => res.json())
+            .then(next_event => {
+                $("#app-container").text('')
+                let newEvent = new Event(next_event)
+                let eventHTML = newEvent.formatShow()
+                $('#app-container').append(eventHTML)
+            })
+    })
+}
 
 function Event(event){
     this.id = event.id
@@ -93,10 +81,11 @@ Event.prototype.formatShow = function(){
         <p>${this.starts} </p>
         <p>${this.ends} </p>
         <p>${this.description} </p>
-    `
+        <p>${this.attendances} </p>
+        <button class="next-event" data-id="${this.id}">Next</button>
+        `
     return eventDetails;
 }
-
 
 //alias to above arrow function:
 // $(function(){
