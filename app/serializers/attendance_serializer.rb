@@ -3,4 +3,4 @@ class AttendanceSerializer < ActiveModel::Serializer
     
     belongs_to :user, serializer: AttendanceUserSerializer
     #belongs_to :event, serializer: AttendanceEventSerializer
-  end
+end
