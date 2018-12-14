@@ -36,9 +36,11 @@ $(() => {
 const bindClickHandlers = () => {
     $('.btn-btn-events').click((e) => {
         e.preventDefault()
-        fetch(`/events.json`)
+        history.pushState(null, null, "events")
+        fetch(`/events/events_data.json`)
             .then((res) => res.json())
             .then(events => {
+                $("#app-container").text('')
                 events.forEach(event => {
                     let newEvent = new Event(event)
                     let eventHTML = newEvent.formatIndex()
@@ -48,10 +50,21 @@ const bindClickHandlers = () => {
     })
 }
 
-//alias to above arrow function:
-// $(function(){
-
-// })
+$(document).on('click', ".show_link", function(e){
+    e.preventDefault()
+    //this.href.json does not work   
+    //$(this).attr('data-id') 
+    id = $(this).data("id")
+    history.pushState(null, null, `events/${id}`)
+    fetch(`/events/${id}.json`)
+        .then(res => res.json())
+        .then(event => {
+            $("#app-container").text('')
+            let newEvent = new Event(event)
+            let eventHTML = newEvent.formatShow()
+            $('#app-container').append(eventHTML)
+        })
+})
 
 function Event(event){
     this.id = event.id
@@ -63,8 +76,24 @@ function Event(event){
 }
 
 Event.prototype.formatIndex = function(){
-    let eventHTML = `
-        <h2>${this.title}</h2>        
+    let eventTitle = `
+        <h2><a href="/events/${this.id}" class="show_link" data-id="${this.id}">${this.title}</a></h2>        
     `
-    return eventHTML;
+    return eventTitle;
 }
+
+Event.prototype.formatShow = function(){
+    let eventDetails = `
+        <h3>${this.title}</h3>
+        <p>${this.location} </p>
+        <p>${this.starts} </p>
+        <p>${this.ends} </p>
+        <p>${this.description} </p>
+    `
+    return eventDetails;
+}
+
+
+//alias to above arrow function:
+// $(function(){
+// })
