@@ -16,6 +16,7 @@
 //= require activestorage
 //= require turbolinks
 //= require bootstrap
-//= require event
 //= require jquery-readyselector
+//= require index
+//= require event
 //= require_tree .
