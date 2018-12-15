@@ -4,18 +4,58 @@
     <%= flash[:error]%>
 <%end%>
 
-<div class="info1">
-    <h1><%= @user.name %></h1>
-    <p><strong>Member Since:</strong></p>
-    <p><%= @user.member_since %></p>
+<div class="user-profile">
+    <div class="profile row">
+        <div class="col-md-4 avatar">
+             <div class="wrapper">
+                    AVATAR HERE
+            </div>
+        </div>
+
+        <div class="col-md-8 basic-info">
+            <div class="user-wrapper">
+                <h2 class="name"><%= @user.name %></h2>
+                <a class="edit-profile" href="<%= edit_user_path(current_user) %>">
+                    <button>Edit Profile</button>
+                </a>
+            </div>
+
+            <ul class="posts">
+                <li><span>Member Since: <span><%= @user.member_since %></li>
+                <li><span>1</span> followers</li>
+                <li><span>1</span> following</li>
+            </ul>   
+        </div>
+    </div>
+
+    <div class="user-tabs">
+        <a class="tab active" href="">
+            <i class="fa fa-th"></i>
+            PAST EVENTS
+        </a>
+        <a class="tab active" href="">
+            <i class="fa fa-tv"></i>
+            UPCOMING EVENTS
+        </a>
+        <a class="tab active" href="">
+            <i class="fa fa-bookmark"></i>
+            SAVED
+        </a>
+        <a class="tab active" href="">
+            <i class="fa fa-tag"></i>
+            TAGGED
+        </a>
+    </div>
+
+    <div class="user-images">
+        <div class="wrapper">
+            <img src="your_image_url">
+        </div>
+        <div class="wrapper">
+            <img src="your_image_url">
+        </div>
+        <div class="wrapper">
+            <img src="your_image_url">
+        </div>
+    </div>
 </div>
-
-<div class="info2">
-    <p><%= link_to 'View My Events', user_events_path(current_user)  %></p>
-   
-    <p><%= link_to 'Home', root_path %></p>
-    
-    <p><%= link_to 'Edit Profile', edit_user_path(@user) %></p>
-
-    <p><%= link_to 'Sign Out', logout_path %></p>
-</div> 
