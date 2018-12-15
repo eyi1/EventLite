@@ -2,14 +2,32 @@
   <%= flash[:error] %>
 <%end%>
 
-<div class="info1">
-  <%= form_for @user, :url => url_for(:controller => 'sessions', :action => 'create') do |f| %>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-    </ br>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-    </ br>
-    <%= f.submit "Log In" %>
-  <% end %>
+<%= form_for @user, :url => url_for(:controller => 'sessions', :action => 'create'), html: {class: "form-horizontal form-login-user"} do |f| %>
+  <div class="form-group row">
+      <%= f.label :email, class: 'col-sm-6 col-form-label' %>
+      <div class="col-sm-6">
+          <%= f.text_field :email, class: 'form-control' %>
+      </div>
+  </div>
+  <div class="form-group row">
+      <%= f.label :password, class: 'col-sm-6 col-form-label' %>
+      <div class="col-sm-6">
+          <%= f.password_field :password, class: 'form-control' %>
+      </div>
+  </div>
+  <div class="form-group row">
+      <div class="col-sm-6">
+      </div>
+      <div class="col-sm-6">
+          <%= f.submit "LOG IN", class: 'btn btn-primary' %>
+      </div>
+  </div>
+<%end%>
+
+<div class="social-row">
+  <div class="col-sm-6">
+  </div>
+  <div class="col-sm-6">
+    <%= link_to('Log In via Facebook', '/auth/facebook') %> 
+  </div>
 </div>
