@@ -29,7 +29,7 @@ class Event < ApplicationRecord
         end
     end
 
-    def rsvp(event)
-        binding.pry
-    end
+    # def rsvp(event)
+    #     binding.pry
+    # end
 end
