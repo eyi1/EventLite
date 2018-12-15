@@ -45,6 +45,7 @@ gem 'time_splitter'
 gem 'active_model_serializers'
 gem "bootstrap-sass"
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
+gem 'font-awesome-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
