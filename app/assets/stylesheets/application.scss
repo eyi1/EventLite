@@ -14,11 +14,46 @@
  */
 // @import "bootstrap-sprockets";
 @import "bootstrap"; 
+@import "users";
 //@import "font-awesome";
 
 // .btn-btn-events {
 
 // }
+// #app-container{
+//   max-width:1000px;
+// }
+
+.container-fluid{
+  max-width: 1000px;
+}
+
+// .navbar-header{
+//   a{
+//     padding-left: 20px;
+//   }
+// }
+// .nav navbar-nav navbar-right{
+//   li{
+//     > a {
+//     padding-right: 500px
+//     }
+//   }
+// }
+
+.footer{
+  font-size: 12px;
+  padding-top: 600px;
+  padding-left:100px;
+  ul{
+    padding-left: 0;
+    > li{
+      display: inline;
+      padding-right: 15px;
+      color: #003569;
+    }
+  }
+}
 
 //  body {
 //    padding-top: 100px;
@@ -87,4 +122,4 @@
 //  .info {
 //    height: 290px;
 //    text-align: left;
-//  }
+//}
