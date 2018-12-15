@@ -186,3 +186,65 @@ view/events/_form
 
         <p><strong>Member Since:</strong></p>
         <p><%= @user.member_since %></p>
+
+
+          # <div class="form-group row">
+
+
+  <!-- #  <%= f.label :username, class: 'col-sm-3 col-form-label' %>
+  #   <div class="col-sm-9">
+  #     <%= f.text_field :username, class: 'form-control' %>
+  #   </div>
+  # </div>
+  # <div class="form-group row">
+  #   <%= f.label :website, class: 'col-sm-3 col-form-label' %>
+  #   <div class="col-sm-9">
+  #     <%= f.text_field :website, class: 'form-control' %>
+  #   </div>
+  # </div>
+  # <div class="form-group row">
+  #   <%= f.label :bio, class: 'col-sm-3 col-form-label' %>
+  #   <div class="col-sm-9">
+  #     <%= f.text_area :bio, class: 'form-control' %>
+  #   </div>
+  # </div>
+  # <div class="form-group row">
+  #   <%= f.label :phone, class: 'col-sm-3 col-form-label' %>
+  #   <div class="col-sm-9">
+  #     <%= f.text_field :phone, class: 'form-control' %>
+  #   </div>
+  # </div>
+  # <div class="form-group row">
+  #   <%= f.label :gender, class: 'col-sm-3 col-form-label' %>
+  #   <div class="col-sm-9">
+  #     <%= f.text_field :gender, class: 'form-control' %>
+  #   </div>
+  # </div> -->
+
+  <%= form_for(@user) do |f| %>
+
+     <%= f.label :name %>: 
+     <%= f.text_field :name %>
+ 
+    </ br>
+    <%= f.label :email %>:
+    <%= f.email_field :email %>
+    
+    </ br>
+    <%= f.label :password %>:
+    <%= f.password_field :password %>
+    
+    </ br>
+    <%= f.submit %>
+  <% end %>
+
+
+  <%= form_for @user, :url => url_for(:controller => 'sessions', :action => 'create') do |f| %>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+    </ br>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    </ br>
+    <%= f.submit "LOG IN" %>
+  <% end %>
