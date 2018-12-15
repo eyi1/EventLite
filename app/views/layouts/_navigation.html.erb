@@ -1,5 +1,5 @@
 <div class="row">
-    <div cass="col-lg-12">
+    <div class="col-sm-12">
         <nav class="navbar navbar-default">
             <div class="container-fluid">
              
@@ -25,10 +25,10 @@
                             <li><%= link_to 'Create Event', new_event_path  %></li>                  
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= image_tag "logo.png" %><span class="caret"></span></a>
-                                <ul class="dropdown-menu">              
-                                    <li><%= link_to 'Browse Events', events_path, :class => "btn-btn-events" %></li>
+                                <ul class="dropdown-menu">
+                                    <li><%= link_to 'Home', root_path %></li>              
+                                    <li><%= link_to 'My Events', user_events_path(current_user), :class => "btn-btn-events" %></li>
                                     <li><%= link_to 'Account Settings', user_path(current_user)%></li>
-                                    <li><%= link_to 'Create Event', new_event_path  %></li>
                                     <li role="separator" class="divider"></li>
                                     <li><%= link_to 'Log Out', logout_path %></li>
                                 </ul>
