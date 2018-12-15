@@ -10,10 +10,13 @@
   </head>
 
   <body class="<%= controller_name%> <%= action_name %>">
-    <%= render 'layouts/navigation'%>
-    <div id="app-container">
-      <%= yield %>
+    <div>
+      <%= render 'layouts/navigation'%>
+
+        <div id="app-container">
+          <%= yield %>
+        </div>
+      <%= render 'layouts/footer'%>
     </div>
-    <%= render 'layouts/footer'%>
   </body>
 </html>
