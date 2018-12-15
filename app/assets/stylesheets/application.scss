@@ -10,51 +10,62 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
-
  */
 // @import "bootstrap-sprockets";
 @import "bootstrap"; 
 @import "users";
-//@import "font-awesome";
+@import "sessions";
+@import "font-awesome";
 
-// .btn-btn-events {
-
-// }
-// #app-container{
-//   max-width:1000px;
-// }
-
-.container-fluid{
-  max-width: 1000px;
+// .btn-btn-events {}
+.navbar-default{
+  background-color: white;
+  border: none;
 }
-
-// .navbar-header{
+.container-fluid{
+  max-width: 1100px;
+  background-color: white;
+}
+// .user-section{
 //   a{
-//     padding-left: 20px;
+//     padding-left: 15px;
+//   }
+//   i.fa{
+//     font-size: 22px;
+//     color: #000000d4;
 //   }
 // }
-// .nav navbar-nav navbar-right{
-//   li{
-//     > a {
-//     padding-right: 500px
-//     }
-//   }
+
+// .img{
+//   object-fit: cover;
+//   margin-left: 100px;
 // }
 
 .footer{
+  
   font-size: 12px;
-  padding-top: 600px;
-  padding-left:100px;
+  padding-top: 100px;
+  padding-bottom: 10px;
+  text-align: center;
   ul{
     padding-left: 0;
     > li{
       display: inline;
       padding-right: 15px;
       color: #003569;
+     // color: #003569;
     }
   }
 }
 
+.navbar-brand{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.img{
+  max-width: 100px;
+  height: auto;
+}
 //  body {
 //    padding-top: 100px;
 //    padding-bottom: 10px;
