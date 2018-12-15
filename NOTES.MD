@@ -173,3 +173,16 @@ view/events/_form
         # user = User.find_by_id(params[:user_id])
         # @attendance = event.attendances.create(:user_id => user.id)
         #redirect_to user_path(@attendance.user)
+
+
+
+        <p><%= link_to 'View My Events', user_events_path(current_user)  %></p>
+    
+        <p><%= link_to 'Home', root_path %></p>
+        
+        <p><%= link_to 'Edit Profile', edit_user_path(@user) %></p>
+
+        <p><%= link_to 'Sign Out', logout_path %></p>
+
+        <p><strong>Member Since:</strong></p>
+        <p><%= @user.member_since %></p>
