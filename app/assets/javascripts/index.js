@@ -7,7 +7,7 @@ $(() => {
 })
 
 const bindClickHandlers = () => {
-    $('.btn-btn-events').click((e) => {
+    $('.btn-btn-events').click(function(e){
         e.preventDefault()
         history.pushState({}, '', 'events')
         fetch('/events.json')
@@ -28,9 +28,9 @@ const getEvent = () => {
         e.preventDefault()
         //this.href.json does not work   
         //$(this).attr('data-id') or
-        //$(this).data("id" 
+        //$(this).data("id") 
         let id = $(this).attr('data-id')
-        history.pushState({}, '', `events/${1}`)
+        history.pushState({}, '', `events/${id}`)
         fetch(`/events/${id}.json`)
             .then(res => res.json())
             .then(event => {
@@ -78,11 +78,9 @@ Event.prototype.formatShow = function(){
     let eventDetails = `
         <h3>${this.title}</h3>
         <p>${this.location} </p>
-        <p>${this.starts} </p>
-        <p>${this.ends} </p>
         <p>${this.description} </p>
-        <p>${this.attendances} </p>
         <button class="next-event" data-id="${this.id}">Next</button>
+        <a href="/events/${this.id}" class="view-event">View in Detail</a>
         `
     return eventDetails;
 }
