@@ -19,8 +19,13 @@ Rails.application.routes.draw do
     resources :events, only: [:index, :new]
   end
 
+  resources :events do 
+    resources :comments, only: [:index, :new, :show]
+  end
+
   resources :users
   resources :events
+  resources :comments
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
