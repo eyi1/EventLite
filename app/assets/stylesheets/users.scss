@@ -53,13 +53,34 @@
     }
 }
 
-.user-tabs{
+.list{
+  padding-left: 500px;
+}
+
+.cool{
+ul{
     border-top: 1px solid #efefef;
     display: flex;
     justify-content: center;
     
-    a.tab{
-     height: 35px;
+    // a.tab{
+    //  height: 35px;
+    //  margin-right: 50px;
+    //  line-height: 45px;
+    //  color: #999;
+    //  font-size: 12px;
+    //  font-weight: 500;
+    //  text-align: center;
+    //  i{
+    //   padding-right: 1px;
+    //  }
+    //  &:hover{
+    //   text-decoration: none;
+    //  }
+    // }
+  > li{  
+     //height: 35px;
+     display: inline;
      margin-right: 50px;
      line-height: 45px;
      color: #999;
@@ -74,9 +95,9 @@
      }
     }
     
-    a.active{
-     border-top: 1px solid #262626;
-     color: #262626;
+    // a.active{
+    //  border-top: 1px solid #262626;
+    //  color: #262626;
     }
 }
 
@@ -133,8 +154,8 @@
 }
 
 .form-edit-user{
-    padding: 30px 100px 10px 50px;
-  .form-group, input{
+    padding: 30px 100px 10px 10px;
+    .form-group, input{
       font-size: 14px;
       color: black;
     }
@@ -145,7 +166,7 @@
       text-align: right;
       font-weight: 600;
     }
-  .avatar{
+    .avatar{
       height: 38px;
       width: 38px;
       border-radius: 50%;
