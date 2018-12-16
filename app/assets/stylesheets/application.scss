@@ -15,9 +15,10 @@
 @import "bootstrap"; 
 @import "users";
 @import "sessions";
+@import "events";
 @import "font-awesome";
+@import "basscss/basscss-addons";
 
-// .btn-btn-events {}
 .navbar-default{
   background-color: white;
   border: none;
@@ -26,6 +27,33 @@
   max-width: 1100px;
   background-color: white;
 }
+
+.footer{
+  font-size: 12px;
+  padding-top: 100px;
+  padding-bottom: 10px;
+  text-align: center;
+  ul{
+    padding-left: 0;
+    > li{
+      display: inline;
+      padding-right: 15px;
+      color: #003569;
+    }
+  }
+}
+
+.navbar-brand{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.img{
+  max-width: 100px;
+  height: auto;
+}
+
+// .btn-btn-events {}
+
 // .user-section{
 //   a{
 //     padding-left: 15px;
@@ -41,31 +69,6 @@
 //   margin-left: 100px;
 // }
 
-.footer{
-  
-  font-size: 12px;
-  padding-top: 100px;
-  padding-bottom: 10px;
-  text-align: center;
-  ul{
-    padding-left: 0;
-    > li{
-      display: inline;
-      padding-right: 15px;
-      color: #003569;
-     // color: #003569;
-    }
-  }
-}
-
-.navbar-brand{
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.img{
-  max-width: 100px;
-  height: auto;
-}
 //  body {
 //    padding-top: 100px;
 //    padding-bottom: 10px;
