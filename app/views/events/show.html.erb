@@ -34,7 +34,7 @@
             <%end%>
 
         <%if @event.users.first == current_user %>  
-            <%= link_to 'Edit Event', edit_event_path(@event) %>
+            <%= link_to 'Edit Event', edit_event_path(@event) %> |
             <%= link_to 'Delete Event', event_path(@event), :method=>:delete %>  
         <%else%>
             <form action="/attendances/new" method="post">
@@ -56,4 +56,6 @@
     </div> 
 </div>  
 
-    <%link_to 'Back to Events', events_path%>
+<% link_to 'Back to Events', events_path %>
+<br>
+<%= link_to 'Load Comments', event_comments_path(@event), :class => "load_comments" %>
