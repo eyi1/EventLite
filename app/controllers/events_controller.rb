@@ -1,5 +1,9 @@
 class EventsController < ApplicationController
+<<<<<<< HEAD
     before_action :set_event, only: [:show, :edit, :update, :destroy, :next]
+=======
+    before_action :set_event, only: [:show, :edit, :update, :destroy, :location]
+>>>>>>> f8219412d05dd71c2b4f2fba2703d79703a7db1a
 
     def show         
         @attendance = Attendance.new
@@ -28,12 +32,15 @@ class EventsController < ApplicationController
             @events = Event.all
             search
             @my_url = new_event_path
+<<<<<<< HEAD
             
             respond_to do |format|
                 format.html
                 format.json {render json: @events}
             end
 
+=======
+>>>>>>> f8219412d05dd71c2b4f2fba2703d79703a7db1a
         end
     end
     
@@ -69,9 +76,14 @@ class EventsController < ApplicationController
         redirect_to events_path
     end
 
+<<<<<<< HEAD
     def next
         @next_event = @event.to_next_event  
         render json: @next_event  
+=======
+    def location 
+        render 'events/location'
+>>>>>>> f8219412d05dd71c2b4f2fba2703d79703a7db1a
     end
 
     private
