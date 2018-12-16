@@ -51,11 +51,6 @@ class EventsController < ApplicationController
         end
     end
 
-    def next
-        @next_event = @event.to_next_event  
-        render json: @next_event  
-    end
-
     def edit   
     end
 
@@ -74,14 +69,10 @@ class EventsController < ApplicationController
         redirect_to events_path
     end
 
-    # def event_data
-    #     render json: @event
-    # end
-
-    # def events_data
-    #     @events = Event.all
-    #     render json: @events
-    # end
+    def next
+        @next_event = @event.to_next_event  
+        render json: @next_event  
+    end
 
     private
     def event_params
