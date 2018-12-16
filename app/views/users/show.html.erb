@@ -7,9 +7,8 @@
 <div class="user-profile">
     <div class="profile row">
         <div class="col-md-4 avatar">
-             <div class="wrapper">
-                <img src="your_image_url">
-            </div>
+             <div class="wrapper">              
+             </div>
         </div>
 
         <div class="col-md-8 basic-info">
@@ -27,35 +26,33 @@
             </ul>   
         </div>
     </div>
-
-    <div class="user-tabs">
-        <a class="tab active" href="">
+<div class="cool">
+    <ul class="user-tabs">
+        <li>
             <i class="fa fa-th"></i>
-            UPCOMING EVENTS
-        </a>
-        <a class="tab" href="">
+            <a class="btn-btn-my-events" data-id="<%= current_user.id %>" href="<%= user_events_path(current_user) %>">
+           UPCOMING 
+           </a>
+        </li>     
+        <li>
             <i class="fa fa-tv"></i>
             PAST EVENTS
-        </a>
-        <a class="tab" href="">
+        </li>
+        <li>
             <i class="fa fa-bookmark"></i>
             SAVED
-        </a>
-        <a class="tab" href="">
+        </li>
+        <li>
             <i class="fa fa-tag"></i>
             TAGGED
-        </a>
-    </div>
+        </li>
+    </ul>
+</div>
 
-    <div class="user-images">
-        <div class="wrapper">
-            <img src="your_image_url">
-        </div>
-        <div class="wrapper">
-            <img src="your_image_url">
-        </div>
-        <div class="wrapper">
-            <img src="your_image_url">
+    <div>
+        <div class="box">
+            <div class="list">
+            </div>
         </div>
     </div>
 </div>
