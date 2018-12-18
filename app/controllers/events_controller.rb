@@ -2,6 +2,8 @@ class EventsController < ApplicationController
     before_action :set_event, only: [:show, :edit, :update, :destroy, :next]
 
     def show         
+        @comment = Comment.new #@event.comments.build 
+        @comments = @event.comments
         @attendance = Attendance.new
         respond_to do |format|
             format.html
