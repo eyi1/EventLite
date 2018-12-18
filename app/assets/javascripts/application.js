@@ -18,6 +18,5 @@
 //= require bootstrap
 //= require jquery-readyselector
 //= require index
-//= require my-events
-//= require event
+//= require comment
 //= require_tree .
