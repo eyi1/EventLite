@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
 
   resources :events do 
-    resources :comments, only: [:index, :new, :show]
+    resources :comments
   end
 
   resources :users
