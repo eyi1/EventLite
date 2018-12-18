@@ -2,30 +2,31 @@ class CommentsController < ApplicationController
     before_action :set_event
 
     def show 
-        #render :layout => "events/show"
+        #render :layout => "events/show"       
     end
 
     def index 
         @comments = @event.comments
+        
+        respond_to do |f|
+            f.html
+            f.json {render json: @comments}
+        end
         #automaticall route to /events/:id/comments
-        #will render comments/index
+        #will implicitly render comments/index
+        render 'comments/index', :layout => false
     end
 
-    # def new 
-    #     @comment = Comment.new
-    # end
-
-    # def create 
-    #      @comment = Comment.new(comment_params)
-        
-    #     if params[:event_id]
-    #         @event = Event.find(params[:event_id])
-    #         @event.comments.build(comment_params)
-    #         @comment.save 
-    #     else
-    #         redirect_to events_path
-    #     end 
-    # end
+    def create
+         @comment = @event.comments.build(comment_params)
+         #@comment = Comment.new(comment_params) (alternative option)
+         if @comment.save
+            #@event.comments << @comment (alternative option)
+            redirect_to @event
+         else
+            render "events/show"
+         end
+    end
 
     # def edit      
     # end
@@ -48,13 +49,11 @@ class CommentsController < ApplicationController
         @event = Event.find(params[:event_id])   
     end
     
-    # def comment_params
-    #     params.require(:comment).permit(
-    #         :content
-    #     )
-    # end
-
-    # def set_comment
-    #     @comment = Comment.find(params[:id])
-    # end
+    def comment_params
+        params.require(:comment).permit(
+            :content,
+            :user_id,
+            :event_id
+        )
+    end
 end
