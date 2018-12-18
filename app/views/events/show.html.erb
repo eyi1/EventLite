@@ -12,7 +12,7 @@
     <div class="body">
         <br>
         <h1><%= @event.title %></h1>
-        <strong><%= link_to 'LOCATION', map_path %></strong>
+        <strong><%= link_to 'LOCATION', map_path(@event) %></strong>
         <p><%= @event.location %></p>
         <strong>DATE AND TIME</strong>
         <p><%= @event.starts.strftime("%a, %B %e, %Y") %> - <%= @event.starts.strftime("%I:%M %p") %></p>
@@ -57,5 +57,16 @@
 </div>  
 
 <% link_to 'Back to Events', events_path %>
-<br>
-<%= link_to 'Load Comments', event_comments_path(@event), :class => "load_comments" %>
+<br />
+<p><%= link_to 'Load Comments', event_comments_path(@event), :class => "load_comments" %></p>
+
+<div class="comments">
+</div>
+<%= render 'comments/comments' %>
+
+<%= form_for(@comment, :url => event_comments_path(@event)) do |f| %>
+    <p><%= f.text_area :content %></p>
+    <p><%= f.hidden_field :user_id, :value => current_user.id %></p>
+    <p><%= f.hidden_field :event_id, :value => @event.id %></p>
+    <p><%= f.submit %></p>
+<% end %>
