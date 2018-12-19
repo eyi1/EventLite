@@ -2,3 +2,42 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.header{
+    padding-left: 300px;
+    padding-top: 50px;
+}
+
+.event_details{
+    margin: 20px auto;
+    padding-left: 300px;
+    .event_container{
+        border:1px solid #efefef;
+    }
+    .title{
+    text-align: center;
+    margin: 10px auto;
+    padding-bottom: 15px;
+    }
+    .description{
+        padding-left: 200px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .details{
+        padding-top: 10px;
+        padding-left: 100px;
+        padding-bottom: 10px;
+    }
+    .comment_container{
+        border:1px solid #efefef;
+        display: inline;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .rsvp{
+        text-align: center;
+        border: 1px solid #efefef;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}
