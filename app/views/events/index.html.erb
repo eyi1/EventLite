@@ -2,10 +2,8 @@
   <%= flash[:success] %>
 <%end%>
 
-<div class="index-body">
-  <div class="info1">
    <h3>Filter Events:</h3>
-    <%= form_tag({}, method: "get") do %>
+    <%= form_tag({}, method: "get", :class => 'sort_events') do %>
     <%= select_tag "date", options_for_select(["Upcoming", "Past"]), include_blank: true %>
     <%= submit_tag "Search" %>
     <% end %>

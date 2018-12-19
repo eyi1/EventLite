@@ -5,6 +5,8 @@ $(document).on('turbolinks:load', function(){
     getEvent()
     
     getNextEvent()
+
+    // sortEvents()
 })
 
 const bindClickHandlers = () => {
@@ -58,6 +60,26 @@ const getNextEvent = () => {
             })
     })
 }
+
+// const sortEvents = () =>{
+//     $(".sort_events").on('submit', function(e){
+//         e.preventDefault();
+//         var upcoming = $(this).val("Upcoming")
+//         var past = $(this).val("Past")
+
+//        $('#date').change(function(){
+//            console.log($(this).val("Upcoming"))
+//        })
+//         if($(this).val("Upcoming")){
+//             alert('upcoming')
+//         }else if ($(this).val("Past")){
+//            alert( "past" );
+//         }else{
+//             alert("nil")
+//         }
+//         var state = event.target.value
+//     })
+// }
 
 function Event(event){
     this.id = event.id
