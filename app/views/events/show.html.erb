@@ -3,70 +3,84 @@
   <%end%>  
 
 <div class="header">
-    <h3>
+    <h4>
         Event Details
-    </h3>
+    </h4>
 </div>
     
-<div class="info1">
-    <div class="body">
-        <br>
-        <h1><%= @event.title %></h1>
-        <strong><%= link_to 'LOCATION', map_path(@event) %></strong>
-        <p><%= @event.location %></p>
-        <strong>DATE AND TIME</strong>
-        <p><%= @event.starts.strftime("%a, %B %e, %Y") %> - <%= @event.starts.strftime("%I:%M %p") %></p>
-        <p><%= @event.ends.strftime("%a, %B %e, %Y") %> - <%= @event.ends.strftime("%I:%M %p") %></p>
-        <strong>DESCRIPTION</strong>
-        <p><%= @event.description %></p>
-        <strong>ATTENDEES</strong>
-       <ol>
-           <% @event.users.each do |user| %>
-            <li> 
-                <%= user.name %> 
-                <%= user.attendances.last.comment %>
-            </li>
-            <%end%>
-        </ol>    
+<div class="col-sm-12 event_details">
+    <div class="col-sm-8 event_container">
+        <div class="col-sm-12 title">
+            <h1><%= @event.title %></h1>
+        </div>
 
-        <% @event.attendances do |attendance| %>
+        <div class="col-sm-12 rsvp">
+            <p>
+            </p>
+                <%if @event.users.last == current_user %>  
+                    <%= link_to 'Edit', edit_event_path(@event) %> |
+                    <%= link_to 'Delete', event_path(@event), :method=>:delete %>  
+                <%else%>
+                    <form action="/attendances/new" method="post">
+                        <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+                        <%= tag(:input, :type => "hidden", :name => :user_id, :value => current_user.id) %>
+                        <%= tag(:input, :type => "hidden", :name => :event_id, :value => @event.id) %> 
+                        <%= tag(:input, :type => "text", :placeholder => "add a comment", :name => :comment, :value => @attendance.comment) %>     
+                        <input type="submit" value="RSVP"> 
+                    </form> 
+                
+                     <% @event.attendances.each do |attendance| %>
+                        <%if attendance.user_id == current_user.id%>
+                            <h4>You are Attending!</h4>
+                            <%end%> 
+                        <%end%>
+                <%end%> 
+        </div>
+        
+        <div class="col-sm-6 description">
+            <strong>DESCRIPTION</strong>
+        <p><%= @event.description %></p>
+        </div>
+
+        <div class="col-sm-6 details">
+            <strong><%= link_to 'LOCATION', map_path(@event) %></strong>
+            <p><%= @event.location %></p>
+            <strong>DATE AND TIME</strong>
+            <p><%= @event.starts.strftime("%a, %B %e, %Y") %> - <%= @event.starts.strftime("%I:%M %p") %></p>
+            <p><%= @event.ends.strftime("%a, %B %e, %Y") %> - <%= @event.ends.strftime("%I:%M %p") %></p>   
+            <strong>GOING</strong>
+            <ol>
+                <% @event.users.each do |user| %>
+                <li> 
+                    <%= user.name %> 
+                    <%= user.attendances.last.comment %>
+                </li>
+                <%end%>
+            </ol>    
+
+            <% @event.attendances do |attendance| %>
                 <%= attendance.comment %>
             <%end%>
+        </div>
+    </div>
 
-        <%if @event.users.first == current_user %>  
-            <%= link_to 'Edit Event', edit_event_path(@event) %> |
-            <%= link_to 'Delete Event', event_path(@event), :method=>:delete %>  
-        <%else%>
-            <form action="/attendances/new" method="post">
-                <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
-                <%= tag(:input, :type => "hidden", :name => :user_id, :value => current_user.id) %>
-                <%= tag(:input, :type => "hidden", :name => :event_id, :value => @event.id) %> 
-                <%= tag(:input, :type => "text", :placeholder => "add a comment", :name => :comment, :value => @attendance.comment) %>     
-                <input type="submit" value="RSVP"> 
-            </form> 
-        <%end%> 
-        
-        <p>
-        <% @event.attendances.each do |attendance| %>
-            <%if attendance.user_id == current_user.id%>
-              <strong>You are Attending!</strong>
-               <%end%> 
-            <%end%> 
-        </p>
-    </div> 
-</div>  
+    <div class="col-sm-4">
+    </div>
 
-<% link_to 'Back to Events', events_path %>
-<br />
-<p><%= link_to 'Load Comments', event_comments_path(@event), :class => "load_comments" %></p>
+    <div class="col-sm-12">
+        <h3>Comments</h3>
+        <%= form_for(@comment, :url => event_comments_path(@event)) do |f| %>
+            <p><%= f.text_area :content, :placeholder => "Add a comment" %></p>
+            <p><%= f.hidden_field :user_id, :value => current_user.id %></p>
+            <p><%= f.hidden_field :event_id, :value => @event.id %></p>
+            <p><%= f.submit %></p>
+        <% end %>
 
-<div class="comments">
+        <div class="comments">
+            <%= render 'comments/comments' %>
+        </div>
+    </div>
 </div>
-<%= render 'comments/comments' %>
 
-<%= form_for(@comment, :url => event_comments_path(@event)) do |f| %>
-    <p><%= f.text_area :content %></p>
-    <p><%= f.hidden_field :user_id, :value => current_user.id %></p>
-    <p><%= f.hidden_field :event_id, :value => @event.id %></p>
-    <p><%= f.submit %></p>
-<% end %>
+<%= link_to 'Back to Events', events_path %>
+<p><%= link_to 'See All Comments', event_comments_path(@event), :class => "load_comments" %></p>
