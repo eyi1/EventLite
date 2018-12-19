@@ -1,4 +1,5 @@
-$(() => {
+$(document).on('turbolinks:load', function(){
+// $(() => {
     bindClickHandlers()
 
     getEvent()
@@ -80,7 +81,7 @@ Event.prototype.formatShow = function(){
         <p>${this.location} </p>
         <p>${this.description} </p>
         <button class="next-event" data-id="${this.id}">Next</button>
-        <a href="/events/${this.id}" class="view-event">View in Detail</a>
+        <a href="/events/${this.id}" class="view-event">View Details</a>
         `
     return eventDetails;
 }
