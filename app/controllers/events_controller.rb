@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-    before_action :set_event, only: [:show, :edit, :update, :destroy, :next]
+    before_action :set_event, only: [:show, :edit, :update, :destroy, :next, :location]
 
     def show         
         @comment = Comment.new #@event.comments.build 
