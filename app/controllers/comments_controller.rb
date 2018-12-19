@@ -22,9 +22,9 @@ class CommentsController < ApplicationController
          #@comment = Comment.new(comment_params) (alternative option)
          if @comment.save
             #@event.comments << @comment (alternative option)
-            redirect_to @event
+            render 'comments/show', :layout => false
          else
-            render "events/show"
+            render "events/index"
          end
     end
 
@@ -40,7 +40,11 @@ class CommentsController < ApplicationController
     # end
 
     # def destroy
-    #     @comment.destroy
+    #     @event.comments.each do |comment|
+    #         comment.find(params[:id])
+    #         comment.destroy
+    #     end
+    #    # @comment.destroy
     #     render 'events/show'
     # end
 
