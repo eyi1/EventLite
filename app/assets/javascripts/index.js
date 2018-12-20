@@ -111,6 +111,7 @@ Event.prototype.formatShow = function(){
         <h3>${this.title}</h3>
         <p>${this.location} </p>
         <p>${this.description} </p>
+        <p>${this.users} </p>
         <button class="next-event" data-id="${this.id}">Next</button>
         <a href="/events/${this.id}" class="view-event">View Details</a>
         `
