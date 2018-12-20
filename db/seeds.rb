@@ -9,9 +9,9 @@
 User.create(name: "nina", email: "nina@nina.com", password: "nina123")
 User.create(name: "isra", email: "isra@nina.com", password: "isra123")
 
-Event.create(title: "Potluck", location: "MD", starts: DateTime.new, ends: DateTime.new, description: "hello friends")
-Event.create(title: "Potluck", location: "MD", starts: DateTime.new, ends: DateTime.new, description: "hello friends")
-Event.create(title: "Potluck", location: "MD", starts: DateTime.new, ends: DateTime.new, description: "hello friends")
+Event.create(title: "Potluck", location: "MD", starts: DateTime.now, ends: DateTime.now, description: "hello friends")
+Event.create(title: "Friendsgiving", location: "MD", starts: DateTime.now, ends: DateTime.now, description: "turkey")
+Event.create(title: "Bday party", location: "MD", starts: DateTime.now, ends: DateTime.now, description: "hbd")
 
 Attendance.create(user_id: 1, event_id: 1, comment: "hello")
 Attendance.create(user_id: 2, event_id: 2, comment: "hi")
