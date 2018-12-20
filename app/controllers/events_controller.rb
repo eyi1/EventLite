@@ -46,8 +46,8 @@ class EventsController < ApplicationController
         if @event.save
             current_user.events << @event #current_user.events.build(event_params)
             flash[:success] = "Successfully created event!"
-            #redirect_to events_path
-            render json: @event, status: 201
+            redirect_to events_path
+            #render json: @event, status: 201
         else
             render :new
         end
@@ -80,6 +80,30 @@ class EventsController < ApplicationController
         render 'events/location'
     end
 
+    def future_events
+        if params[:user_id]
+            @events = User.find(params[:user_id]).events
+            @events = @events.from_today 
+            render json: @events
+        else
+            @events = Event.all
+            @events = @events.from_today 
+            render json: @events
+        end
+    end
+
+    def old_events
+        if params[:user_id]
+            @events = User.find(params[:user_id]).events
+            @events = @events.old_events
+            render json: @events
+        else
+            @events = Event.all
+            @events = @events.old_events
+            render json: @events
+        end
+    end
+
     private
     def event_params
         params.require(:event).permit(
@@ -98,8 +122,8 @@ class EventsController < ApplicationController
     def search
         if !params[:date].blank?
             if params[:date] == "Upcoming"
-              @events = @events.from_today
-            else
+              @events = @events.from_today        
+            elsif params[:date] == "Past"
               @events = @events.old_events
             end
         end
