@@ -95,6 +95,7 @@ function Event(event){
     this.ends = event.ends
     this.description = event.description
     this.users = event.users
+    //this.users = event.users
     //this.userCollection = []
 }
 
@@ -121,7 +122,7 @@ Event.prototype.formatShow = function(){
 //     formatter.users.forEach(function(user){
 //         formatter.userCollection.push(user.name)
 //     })
-}
+//}
 
 //alias to above arrow function:
 // $(function(){
