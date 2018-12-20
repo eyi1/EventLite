@@ -1,12 +1,13 @@
 $(document).on('turbolinks:load', function(){
 // $(() => {
-    bindClickHandlers()
+    //bindClickHandlers()
+    
+    sortEvents()
 
     getEvent()
     
     getNextEvent()
 
-    // sortEvents()
 })
 
 const bindClickHandlers = () => {
@@ -27,7 +28,7 @@ const bindClickHandlers = () => {
 }
 
 const getEvent = () => {
-        $(document).on('click', ".show_link", function(e){
+    $(document).on('click', ".show_link", function(e){
         e.preventDefault()
         //this.href.json does not work   
         //$(this).attr('data-id') or
@@ -61,25 +62,30 @@ const getNextEvent = () => {
     })
 }
 
-// const sortEvents = () =>{
-//     $(".sort_events").on('submit', function(e){
-//         e.preventDefault();
-//         var upcoming = $(this).val("Upcoming")
-//         var past = $(this).val("Past")
-
-//        $('#date').change(function(){
-//            console.log($(this).val("Upcoming"))
-//        })
-//         if($(this).val("Upcoming")){
-//             alert('upcoming')
-//         }else if ($(this).val("Past")){
-//            alert( "past" );
-//         }else{
-//             alert("nil")
-//         }
-//         var state = event.target.value
-//     })
-// }
+const sortEvents = () =>{
+    $('input[type="submit"]').click(function(e){
+        e.preventDefault();
+        if($('#date').val() === "Upcoming"){
+            $.get(`/events/future.json`)
+            .done(function(futureEvents){
+                futureEvents.forEach(function(futureEvent){
+                    let newEvent = new Event(futureEvent)
+                    let eventHTML = newEvent.formatIndex()
+                    $('#app-container').html(eventHTML)
+                })
+            })
+        }else if($('#date').val() === "Past"){
+            $.get(`/events/old.json`)
+            .done(function(oldEvents){
+                oldEvents.forEach(function(oldEvent){
+                    let newEvent = new Event(oldEvent)
+                    let eventHTML = newEvent.formatIndex()
+                    $('#app-container').html(eventHTML)
+                })
+            })
+        }
+    })
+}
 
 function Event(event){
     this.id = event.id
@@ -88,6 +94,8 @@ function Event(event){
     this.starts = event.starts
     this.ends = event.ends
     this.description = event.description
+    this.users = event.users
+    //this.userCollection = []
 }
 
 Event.prototype.formatIndex = function(){
@@ -108,6 +116,15 @@ Event.prototype.formatShow = function(){
     return eventDetails;
 }
 
+// Event.prototype.getUsers = function(){
+//     let formatter = this;
+//     formatter.users.forEach(function(user){
+//         formatter.userCollection.push(user.name)
+//     })
+}
+
 //alias to above arrow function:
 // $(function(){
 // })
+//  $.each(this.userCollection, function(value)
+//     value.name
