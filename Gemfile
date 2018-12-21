@@ -43,10 +43,11 @@ gem 'thin'
 gem 'cancancan', '~> 2.0'
 gem 'time_splitter'
 gem 'active_model_serializers'
-gem "bootstrap-sass"
+gem 'bootstrap-sass'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'font-awesome-rails'
 gem 'basscss-rails'
+#gem 'sprockets-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
