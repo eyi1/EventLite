@@ -6,20 +6,20 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create(name: "nina", email: "nina@nina.com", password: "nina123")
-User.create(name: "isra", email: "isra@nina.com", password: "isra123")
+# User.create(name: "nina", email: "nina@nina.com", password: "nina123")
+# User.create(name: "isra", email: "isra@nina.com", password: "isra123")
 
-Event.create(title: "Potluck", location: "MD", starts: DateTime.now, ends: DateTime.now, description: "hello friends")
-Event.create(title: "Friendsgiving", location: "MD", starts: DateTime.now, ends: DateTime.now, description: "turkey")
-Event.create(title: "Bday party", location: "MD", starts: DateTime.now, ends: DateTime.now, description: "hbd")
+# Event.create(title: "Potluck", location: "MD", starts: DateTime.now, ends: DateTime.now, description: "hello friends")
+# Event.create(title: "Friendsgiving", location: "MD", starts: DateTime.now, ends: DateTime.now, description: "turkey")
+# Event.create(title: "Bday party", location: "MD", starts: DateTime.now, ends: DateTime.now, description: "hbd")
 
-Attendance.create(user_id: 1, event_id: 1, comment: "hello")
-Attendance.create(user_id: 2, event_id: 2, comment: "hi")
-Attendance.create(user_id: 2, event_id: 2, comment: "going")
-Attendance.create(user_id: 2, event_id: 2, comment: "going")
+# Attendance.create(user_id: 1, event_id: 1, comment: "hello")
+# Attendance.create(user_id: 2, event_id: 2, comment: "hi")
+# Attendance.create(user_id: 2, event_id: 2, comment: "going")
+# Attendance.create(user_id: 2, event_id: 2, comment: "going")
 
-Comment.create(user_id: 1, event_id: 1, content: 'wow')
-Comment.create(user_id: 2, event_id: 3, content: 'hello')
-Comment.create(user_id: 1, event_id: 2, content: 'yay') 
-Comment.create(user_id: 2, event_id: 3,content: 'hi')
+# Comment.create(user_id: 1, event_id: 1, content: 'wow')
+# Comment.create(user_id: 2, event_id: 3, content: 'hello')
+# Comment.create(user_id: 1, event_id: 2, content: 'yay') 
+# Comment.create(user_id: 2, event_id: 3,content: 'hi')
 
