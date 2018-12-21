@@ -9,14 +9,13 @@ class UsersController < ApplicationController
     end
 
     def create
-        byebug
         @user = User.new(user_params)
         if @user.save
             session[:user_id] = @user.id
             flash[:success] = "Successfully signed up! Welcome to EventLite!"
             redirect_to user_path(@user)         
         else
-            redirect_to root
+            render :new
         end
     end
 
