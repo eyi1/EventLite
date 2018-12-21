@@ -10,22 +10,22 @@ $(document).on('turbolinks:load', function(){
 
 })
 
-const bindClickHandlers = () => {
-    $('.btn-btn-events').click(function(e){
-        e.preventDefault()
-        history.pushState({}, '', 'events')
-        fetch('/events.json')
-            .then((res) => res.json())
-            .then(events => {
-                $("#app-container").text('')
-                events.forEach(event => {
-                    let newEvent = new Event(event)
-                    let eventHTML = newEvent.formatIndex()
-                    $('#app-container').append(eventHTML)
-                })
-            })
-    })
-}
+// const bindClickHandlers = () => {
+//     $('.btn-btn-events').click(function(e){
+//         e.preventDefault()
+//         history.pushState({}, '', 'events')
+//         fetch('/events.json')
+//             .then((res) => res.json())
+//             .then(events => {
+//                 $("#app-container").text('')
+//                 events.forEach(event => {
+//                     let newEvent = new Event(event)
+//                     let eventHTML = newEvent.formatIndex()
+//                     $('#app-container').append(eventHTML)
+//                 })
+//             })
+//     })
+// }
 
 const getEvent = () => {
     $(document).on('click', ".show_link", function(e){
@@ -95,8 +95,6 @@ function Event(event){
     this.ends = event.ends
     this.description = event.description
     this.users = event.users
-    //this.users = event.users
-    //this.userCollection = []
 }
 
 Event.prototype.formatIndex = function(){
@@ -107,26 +105,23 @@ Event.prototype.formatIndex = function(){
 }
 
 Event.prototype.formatShow = function(){
+    let formatter = this
+    formatter.usersList = "";
+    formatter.users.forEach(function(user){
+        formatter.usersList += user.name
+    })
     let eventDetails = `
-        <h3>${this.title}</h3>
-        <p>${this.location} </p>
-        <p>${this.description} </p>
-        <p>${this.users} </p>
+        <h3><strong>${this.title}</strong></h3>
+        <p><strong>${this.location}</strong></p>
+        <p><strong>${this.description}</strong></p>
+        <p><strong>Going</strong></p>
+        <p>${formatter.usersList} </p>
         <button class="next-event" data-id="${this.id}">Next</button>
         <a href="/events/${this.id}" class="view-event">View Details</a>
         `
     return eventDetails;
 }
 
-// Event.prototype.getUsers = function(){
-//     let formatter = this;
-//     formatter.users.forEach(function(user){
-//         formatter.userCollection.push(user.name)
-//     })
-//}
-
 //alias to above arrow function:
 // $(function(){
 // })
-//  $.each(this.userCollection, function(value)
-//     value.name
