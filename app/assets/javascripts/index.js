@@ -106,18 +106,24 @@ Event.prototype.formatIndex = function(){
 
 Event.prototype.formatShow = function(){
     let formatter = this
+    let date = JSON.stringify(formatter.starts)
+    date.split(" ")
+    date = date[6] + date[7] + date[8] + date[9] + date[10]
+
     formatter.usersList = "";
     formatter.users.forEach(function(user){
-        formatter.usersList += user.name
+        formatter.usersList += `${user.name}<br />` 
     })
     let eventDetails = `
-        <h3><strong>${this.title}</strong></h3>
-        <p><strong>${this.location}</strong></p>
-        <p><strong>${this.description}</strong></p>
-        <p><strong>Going</strong></p>
-        <p>${formatter.usersList} </p>
-        <button class="next-event" data-id="${this.id}">Next</button>
-        <a href="/events/${this.id}" class="view-event">View Details</a>
+        <h2>${this.title}</h2>
+        <p><h4>When: ${date}</h4></p>
+        <p><h4>Location: ${this.location}<br /></h4>
+        <p><h4>Description:</h4></p> 
+        <h4>${this.description}</h4>
+        <p><h4>Going:</strong></h4></p>
+        <p>${formatter.usersList} </p><br />
+        <button class="next-event" data-id="${this.id}">Next</button> |
+        <a href="/events/${this.id}" class="view-event">View Details</a> |
         `
     return eventDetails;
 }
