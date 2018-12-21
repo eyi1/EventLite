@@ -16,8 +16,7 @@ class UsersController < ApplicationController
             flash[:success] = "Successfully signed up! Welcome to EventLite!"
             redirect_to user_path(@user)         
         else
-            flash[:error] = "There was an error"
-            render :new
+            redirect_to root
         end
     end
 
