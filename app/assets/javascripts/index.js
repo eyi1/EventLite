@@ -125,3 +125,6 @@ Event.prototype.formatShow = function(){
 //alias to above arrow function:
 // $(function(){
 // })
+
+//$icon-font-path: '../fonts/bootstrap/';
+// @import "bootstrap-sprockets";
