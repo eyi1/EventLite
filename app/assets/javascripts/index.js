@@ -63,7 +63,8 @@ const getNextEvent = () => {
 }
 
 const sortEvents = () =>{
-    $('input[type="submit"]').click(function(e){
+    $("form[class='sort_events']").click(function(e){
+        //'input[type="submit"]' would mean any form, has to specifiy form by its class
         e.preventDefault();
         if($('#date').val() === "Upcoming"){
             $.get(`/events/future.json`)
