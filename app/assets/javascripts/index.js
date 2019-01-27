@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function(){
 // $(() => {
-    //bindClickHandlers()
+    bindClickHandlers()
     
     sortEvents()
 
@@ -8,10 +8,12 @@ $(document).on('turbolinks:load', function(){
     
     getNextEvent()
 
-})
+    alphabetizeEvents()
 
+})
+//refactor 
 // const bindClickHandlers = () => {
-//     $('.btn-btn-events').click(function(e){
+//     $('.btn-btn-my-events').click(function(e){
 //         e.preventDefault()
 //         history.pushState({}, '', 'events')
 //         fetch('/events.json')
@@ -26,6 +28,35 @@ $(document).on('turbolinks:load', function(){
 //             })
 //     })
 // }
+
+const alphabetizeEvents = () => {
+    $(".button").on('click', function(){
+        fetch(`/events.json`)
+            .then(res => res.json())
+            .then(events => {
+                events.sort(function(a, b) {
+                    var nameA = a.title.toUpperCase(); // ignore upper and lowercase
+                    var nameB = b.title.toUpperCase(); // ignore upper and lowercase
+                    if (nameA < nameB) {
+                      return -1;
+                    }
+                    if (nameA > nameB) {
+                      return 1;
+                    }
+                  
+                    // names must be equal
+                    return 0;
+                  });
+                  $('.event_list').html("")
+                  events.forEach(function(event){
+                    let newEvent = new Event(event)
+                    let eventHTML = newEvent.formatIndex()
+                    $('.event_list').append(eventHTML)
+                })
+        })
+    })
+}
+
 
 const getEvent = () => {
     $(document).on('click', ".show_link", function(e){
@@ -64,29 +95,29 @@ const getNextEvent = () => {
 
 const sortEvents = () =>{
     $("form[class='sort_events']").click(function(e){
-        //'input[type="submit"]' would mean any form, has to specifiy form by its class
+        //'input[type="submit"]' would mean any form, need to specifiy form by its class
         e.preventDefault();
+        $('.event_list').html("")
         if($('#date').val() === "Upcoming"){
             $.get(`/events/future.json`)
             .done(function(futureEvents){
                 futureEvents.forEach(function(futureEvent){
                     let newEvent = new Event(futureEvent)
                     let eventHTML = newEvent.formatIndex()
-                    $('#app-container').html(eventHTML)
+                    $('.event_list').append(eventHTML)
                 })
             })
-        }else if($('#date').val() === "Past"){
+        }else if($('#date').val() === "Past"){            
             $.get(`/events/old.json`)
             .done(function(oldEvents){
                 oldEvents.forEach(function(oldEvent){
                     let newEvent = new Event(oldEvent)
                     let eventHTML = newEvent.formatIndex()
-                    $('#app-container').html(eventHTML)
+                    $('#app-container').append(eventHTML)
                 })
             })
         }
     })
-}
 
 function Event(event){
     this.id = event.id
@@ -128,6 +159,7 @@ Event.prototype.formatShow = function(){
         `
     return eventDetails;
 }
+
 
 //alias to above arrow function:
 // $(function(){
