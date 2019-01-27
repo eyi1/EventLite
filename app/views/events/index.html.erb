@@ -8,10 +8,15 @@
     <%= submit_tag "Search" %>
     <% end %>
 
+    <button class="button">alphabetize events</button>
+    
+  
+  <div class="event_list">
     <ul>
       <% @events.each do |event| %>
         <li><%= link_to event.title, event_path(event), :class => 'event_link', :data => { :id => event.id }%></li>
       <% end %>
     </ul>
+  </div>
 
   <% button_to 'GO', @my_url, method: :get%>
