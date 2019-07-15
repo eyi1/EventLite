@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+#source 'https://app.contrastsecurity.com/Contrast/api/repo/rvm'
 
 ruby '2.3.3'
 
@@ -77,6 +78,10 @@ end
 
 # group :production do
 #   gem 'pg'
+# end
+
+# group :contrast, :development, :test, :production do
+#   gem 'contrast-agent'
 # end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
