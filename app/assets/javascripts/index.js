@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function(){
 // $(() => {
-    bindClickHandlers()
+   // bindClickHandlers()
     
     sortEvents()
 
@@ -11,23 +11,6 @@ $(document).on('turbolinks:load', function(){
     alphabetizeEvents()
 
 })
-//refactor 
-// const bindClickHandlers = () => {
-//     $('.btn-btn-my-events').click(function(e){
-//         e.preventDefault()
-//         history.pushState({}, '', 'events')
-//         fetch('/events.json')
-//             .then((res) => res.json())
-//             .then(events => {
-//                 $("#app-container").text('')
-//                 events.forEach(event => {
-//                     let newEvent = new Event(event)
-//                     let eventHTML = newEvent.formatIndex()
-//                     $('#app-container').append(eventHTML)
-//                 })
-//             })
-//     })
-// }
 
 const alphabetizeEvents = () => {
     $(".button").on('click', function(){
@@ -35,16 +18,14 @@ const alphabetizeEvents = () => {
             .then(res => res.json())
             .then(events => {
                 events.sort(function(a, b) {
-                    var nameA = a.title.toUpperCase(); // ignore upper and lowercase
-                    var nameB = b.title.toUpperCase(); // ignore upper and lowercase
+                    var nameA = a.title.toUpperCase(); 
+                    var nameB = b.title.toUpperCase(); 
                     if (nameA < nameB) {
                       return -1;
                     }
                     if (nameA > nameB) {
                       return 1;
-                    }
-                  
-                    // names must be equal
+                    }                
                     return 0;
                   });
                   $('.event_list').html("")
@@ -93,9 +74,9 @@ const getNextEvent = () => {
     })
 }
 
-const sortEvents = () =>{
+const sortEvents = () => {
     $("form[class='sort_events']").click(function(e){
-        //'input[type="submit"]' would mean any form, need to specifiy form by its class
+        //'input[type="submit"]' specify form by its class name
         e.preventDefault();
         $('.event_list').html("")
         if($('#date').val() === "Upcoming"){
@@ -158,6 +139,7 @@ Event.prototype.formatShow = function(){
         <a href="/events/${this.id}" class="view-event">View Details</a> |
         `
     return eventDetails;
+    }
 }
 
 
@@ -167,3 +149,21 @@ Event.prototype.formatShow = function(){
 
 //$icon-font-path: '../fonts/bootstrap/';
 // @import "bootstrap-sprockets";
+
+//refactor 
+// const bindClickHandlers = () => {
+//     $('.btn-btn-my-events').click(function(e){
+//         e.preventDefault()
+//         history.pushState({}, '', 'events')
+//         fetch('/events.json')
+//             .then((res) => res.json())
+//             .then(events => {
+//                 $("#app-container").text('')
+//                 events.forEach(event => {
+//                     let newEvent = new Event(event)
+//                     let eventHTML = newEvent.formatIndex()
+//                     $('#app-container').append(eventHTML)
+//                 })
+//             })
+//     })
+// }

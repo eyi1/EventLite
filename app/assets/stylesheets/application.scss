@@ -19,8 +19,14 @@
 @import "font-awesome";
 @import "basscss/basscss-addons";
 
+@media screen and (max-width: 800x){
+  .navbar-default{
+    background-color: blue;
+  }
+}
+
 .navbar-default{
-  background-color: white;
+  //background-color: white;
   border: none;
   border:1px solid #efefef;
 }
